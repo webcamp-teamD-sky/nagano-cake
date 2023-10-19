@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(version: 2023_10_19_033038) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id"
-    t.string "name"
-    t.string "address"
-    t.string "postcode"
+    t.string "name", null: false
+    t.string "address", null: false
+    t.string "postcode", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -77,14 +77,14 @@ ActiveRecord::Schema.define(version: 2023_10_19_033038) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "last_name"
-    t.string "first_name"
-    t.string "last_name_kana"
-    t.string "first_name_kana"
-    t.string "phone_number"
-    t.string "postcode"
-    t.boolean "is_delete"
-    t.string "address"
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "last_name_kana", null: false
+    t.string "first_name_kana", null: false
+    t.string "phone_number", null: false
+    t.string "postcode", null: false
+    t.boolean "is_delete", default: false, null: false
+    t.string "address", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
@@ -96,34 +96,34 @@ ActiveRecord::Schema.define(version: 2023_10_19_033038) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "genre_id"
-    t.string "name"
-    t.text "explanation"
-    t.integer "price"
-    t.boolean "is_active"
+    t.integer "genre_id", null: false
+    t.string "name", null: false
+    t.text "explanation", null: false
+    t.integer "price", null: false
+    t.boolean "is_active", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "order_details", force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "order_id"
-    t.integer "amount"
-    t.integer "price"
-    t.integer "production_status"
+    t.integer "item_id", null: false
+    t.integer "order_id", null: false
+    t.integer "amount", null: false
+    t.integer "price", null: false
+    t.integer "production_status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "customer_id"
-    t.string "postcode"
-    t.string "name"
-    t.string "address"
-    t.integer "payment_method"
-    t.integer "total_payment"
-    t.integer "status"
-    t.integer "postage"
+    t.integer "customer_id", null: false
+    t.string "postcode", null: false
+    t.string "name", null: false
+    t.string "address", null: false
+    t.integer "payment_method", null: false
+    t.integer "total_payment", null: false
+    t.integer "status", null: false
+    t.integer "postage", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
