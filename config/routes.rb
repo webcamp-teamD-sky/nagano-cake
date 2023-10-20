@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   namespace :public do
     get "homes/about" => "homes#about"
+    get "search" => "searches#search"
   end
 # 顧客用
 # URL /customers/sign_in ...
