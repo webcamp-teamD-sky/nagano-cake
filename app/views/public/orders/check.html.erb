@@ -1,164 +1,111 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="bg-light" style="max-width: 260px; margin: 0 auto; padding: 15px;">
-        <div class="text-center">
+      <div class="container">
+        <div class="row">
           <div class="col-12">
-            <h2>注文情報確認</h2>
-          </div>
-        </div>
-      </div>
 
-      <table class="table table-hover">
-        <thead class="thead-light">
-          <tr>
-            <th>商品名</th>
-            <th>単価（税込）</th>
-            <th>数量</th>
-            <th>小計</th>
-            <th colspan="3"></th>
-            <th>送料</th>
-            <th></th>
-        </thead>
-
-
-
-
-
-</head>
-<body>
-</body>
-</html>
-
-
-
-        <tbody>
-        <%# @orders.each do |order| %>
-          <tr>
-            <td>
-              <%#= link_to admin_order_path(order) do %>
-                <u><%#= @order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></u>
-              <%# end %>
-            </td>
-            <td><%#= order.customer.last_name + order.customer.first_name %></td>
-            <td><%#= order.order_details.count.to_s(:delimited) %></td>
-            <td><%#= order.status_i18n %></td>
-          </tr>
-        <%# end %>
-        </tbody>
-      </table>
-      <div class="d-flex justify-content-center">
-        <%#= paginate orders %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<br>
-<br>
-送料（税込）<br>
-商品合計<br>
-請求金額（税込）<br>
-支払方法<br>
-お届け先<br>
-注文を確定する<br>
-
-<body>
-<div class="container my-5">
-  <div class="row">
-    <div class="col">
-
-      <div class="bg-light" style="max-width: 230px; margin: 0 auto; padding: 15px;">
-        <div class="text-center">
-          <div class="col-12">
-            <h3>注文情報入力</h3>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12">
-
-      <%= form_with model: Order.new, url: check_public_orders_path, method: :get do |f| %>
-        <div class="mb-3">
-          <h5>支払方法</h5>
-          <div class="p-3">
-            <div class="col-md-3">
-              <label>
-                <%= f.radio_button :payment_method, "credit_card", checked: true %>
-                クレジットカード
-              </label>
-              <br>
-              <label>
-                <%= f.radio_button :payment_method, "transfer" %>
-                銀行振込
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <h5>お届け先</h5>
-
-        <div class="p-3">
-          <div class="col-md-3">
-            <%= f.radio_button :address_type, "customer_address", checked: true %>
-            <%= f.label :address_type, "ご自身の住所" %><br>
-            <div class="col-md-3">
-            〒<%#= current_customer.post_code + "　" + current_customer.address + "　" + current_customer.family_name + current_customer.first_name %>
-            </div>
-          </div>
-
-          <div class="p-3">
-            <%= f.radio_button :address_type, "registered_address" %>
-            <%= f.label :address_type, "登録済住所から選択" %><br>
-            <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :name) %>
-          </div>
-
-          <div class="p-3">
-            <%= f.radio_button :address_type, "new_address" %>
-            <%= f.label :address_type, "新しいお届け先" %>
-            <div class="p-3">
-
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="new_post_code">郵便番号(ハイフンなし)</label>
-                </div>
-                <div class="col-md-3">
-                  <%= f.text_field :new_post_code, id: "new_post_code", class: "form-control", placeholder: "0000000", style: "border-radius: 3px;" %>
-                </div>
+          <div class="bg-light" style="max-width: 260px; margin: 0 auto; padding: 15px;">
+            <div class="text-center">
+              <div class="col-12">
+                <h3>注文情報確認</h3>
               </div>
+            </div>
+          </div>
 
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="new_post_code">住所</label>
-                </div>
-                <div class="col-md-9">
-                  <%= f.text_field :new_post_code, id: "new_post_code", class: "form-control", placeholder: "東京都渋谷区代々木神園町0-0", style: "border-radius: 3px;" %>
-                </div>
-              </div>
+          <style>
+            .table-container {
+              display: flex;
+              justify-content: space-between;
+            }
 
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="new_name">宛名</label>
-                </div>
-                <div class="col-md-3">
-                  <%= f.text_field :new_name, id: "new_name", class: "form-control", placeholder: "令和道子", style: "border-radius: 3px;" %>
-                </div>
-              </div>
+            .table {
+              border: 1px solid #ccc;
+              border-collapse: collapse;
+              width: 48%; /* テーブルの幅調整 */
+            }
 
+            .table th, .table td {
+              border: 1px solid #ccc;
+              padding: 8px;
+              text-align: center;
+            }
+          </style>
+        <!--</head>-->
+          <body>
+            <div class="table-container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>商品名</th>
+                    <th>単価（税込）</th>
+                    <th>数量</th>
+                    <th>小計</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>チョコバナナミルフィーユ</td>
+                    <td>1,100</td>
+                    <td>1</td>
+                    <td>1,100</td>
+                  </tr>
+                  <tr>
+                    <td>チーズタルト</td>
+                    <td>330</td>
+                    <td>2</td>
+                    <td>660</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>送料</th>
+                    <th>商品合計</th>
+                    <th>請求金額</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>800</td>
+                    <td>1,760</td>
+                    <td>2,560</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
-            <div class="actions my-2 text-center">
-              <%= f.submit "確認画面へ進む", class:"btn btn-primary mt-3" %>
-            </div>
-            <% end %>
 
-      </div>
-    </div>
-  </div>
-</div>
-</body>
+              　<h4><b>支払方法</b></h4>
+  　  <!--<#% if @selected_pay_method == "credit_card" %>-->
+    <!--  クレジットカード-->
+    <%# else %>
+    <!--  銀行振込-->
+    <%# end %>
+
+      <h4><b>お届け先</b></h4>
+        <%#= @order.postcode %>
+        <%#= @order.address %>
+        <%#= @order.address_name %>
+        <br>
+          <%#= form_with model: @order, url: public_orders_path do |f| %>
+          <%#= f.hidden_field :address_name, :value => @order.address_name %>
+          <%#= f.hidden_field :address, :value => @order.address %>
+          <%#= f.hidden_field :postcode, :value => @order.postcode %>
+          <%#v= f.hidden_field :payment_method, :value => @order.payment_method %>
+          <%#= f.hidden_field :billing_amount, :value => @total_price %>
+          <%#= f.hidden_field :postage, :value => @shipping_fee %>
+
+          <%#= f.submit "注文を確定する", class: "btn btn-primary" %>
+          <%# end %>
+
+
+
+
+
+          </body>
+        </html>
