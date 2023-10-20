@@ -3,9 +3,41 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
+    <style>
+      .table-container {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .table {
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+        width: 48%;
+      }
+
+      .table th, .table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+      }
+
+      /* 追加スタイル: テーブルを縦に表示 */
+      .vertical-table {
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px; /* 適切な間隔を設定 */
+      }
+      .vertical-table th, .vertical-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left; /* 右寄せから左寄せに変更 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
 
           <div class="bg-light" style="max-width: 260px; margin: 0 auto; padding: 15px;">
             <div class="text-center">
@@ -15,97 +47,58 @@
             </div>
           </div>
 
-          <style>
-            .table-container {
-              display: flex;
-              justify-content: space-between;
-            }
+          <div class="table-container">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>商品名</th>
+                  <th>単価（税込）</th>
+                  <th>数量</th>
+                  <th>小計</th>
+                </tr>
+              </thead>
 
-            .table {
-              border: 1px solid #ccc;
-              border-collapse: collapse;
-              width: 48%; /* テーブルの幅調整 */
-            }
+              <tbody>
+                <tr>
+                  <td>チョコバナナミルフィーユ</td>
+                  <td>1,100</td>
+                  <td>1</td>
+                  <td>1,100</td>
+                </tr>
+                <tr>
+                  <td>チーズタルト</td>
+                  <td>330</td>
+                  <td>2</td>
+                  <td>660</td>
+                </tr>
+              </tbody>
+            </table>
 
-            .table th, .table td {
-              border: 1px solid #ccc;
-              padding: 8px;
-              text-align: center;
-            }
-          </style>
-        <!--</head>-->
-          <body>
-            <div class="table-container">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>商品名</th>
-                    <th>単価（税込）</th>
-                    <th>数量</th>
-                    <th>小計</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>チョコバナナミルフィーユ</td>
-                    <td>1,100</td>
-                    <td>1</td>
-                    <td>1,100</td>
-                  </tr>
-                  <tr>
-                    <td>チーズタルト</td>
-                    <td>330</td>
-                    <td>2</td>
-                    <td>660</td>
-                  </tr>
-                </tbody>
-              </table>
+            <table class="vertical-table">
+              <tbody>
+                <tr>
+                  <th>送料</th>
+                  <td>800</td>
+                </tr>
+                <tr>
+                  <th>商品合計</th>
+                  <td>1,760</td>
+                </tr>
+                <tr>
+                  <th>請求金額</th>
+                  <td>2,560</td>
+                </tr>
+              </tbody>
+            </table>
 
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>送料</th>
-                    <th>商品合計</th>
-                    <th>請求金額</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>800</td>
-                    <td>1,760</td>
-                    <td>2,560</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          </div>
 
+          <h4><b>支払方法</b></h4>
 
-              　<h4><b>支払方法</b></h4>
-  　  <!--<#% if @selected_pay_method == "credit_card" %>-->
-    <!--  クレジットカード-->
-    <%# else %>
-    <!--  銀行振込-->
-    <%# end %>
+          <h4><b>お届け先</b></h4>
 
-      <h4><b>お届け先</b></h4>
-        <%#= @order.postcode %>
-        <%#= @order.address %>
-        <%#= @order.address_name %>
-        <br>
-          <%#= form_with model: @order, url: public_orders_path do |f| %>
-          <%#= f.hidden_field :address_name, :value => @order.address_name %>
-          <%#= f.hidden_field :address, :value => @order.address %>
-          <%#= f.hidden_field :postcode, :value => @order.postcode %>
-          <%#v= f.hidden_field :payment_method, :value => @order.payment_method %>
-          <%#= f.hidden_field :billing_amount, :value => @total_price %>
-          <%#= f.hidden_field :postage, :value => @shipping_fee %>
-
-          <%#= f.submit "注文を確定する", class: "btn btn-primary" %>
-          <%# end %>
-
-
-
-
-
-          </body>
-        </html>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
