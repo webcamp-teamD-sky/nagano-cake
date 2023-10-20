@@ -32,6 +32,10 @@ Rails.application.routes.draw do
     get 'items/index'
     get 'items/show'
   end
+
+  namespace :public do
+    get "homes/about" => "homes#about"
+  end
 # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
@@ -44,8 +48,8 @@ devise_for :customers,skip: [:passwords], controllers: {
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
-  
+
   root to: 'public/homes#top'
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
