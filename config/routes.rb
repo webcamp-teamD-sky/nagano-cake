@@ -6,14 +6,24 @@ Rails.application.routes.draw do
     get 'addresses/update'
     get 'addresses/destroy'
   end
-  namespace :public do
-    get 'orders/new'
-    get 'orders/check'
-    get 'orders/completion'
-    get 'orders/create'
-    get 'orders/index'
-    get 'orders/show'
+  # namespace :public do
+  #   get 'orders/new'
+  #   get 'orders/check'
+  #   get 'orders/completion'
+  #   get 'orders/create'
+  #   get 'orders/index'
+  #   get 'orders/show'
+  # end
+
+  namespace :public, path: '' do
+    resources :orders, only: [:new, :index, :show, :create] do
+      collection do
+        get :check
+        get :completion
+      end
+    end
   end
+
   namespace :public do
     get 'cart_items/index'
     get 'cart_items/update'
@@ -54,8 +64,8 @@ namespace :admin do
     resource :order_details,only: [:update]
   end
 end
-  
+
   root to: 'public/homes#top'
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
