@@ -3,151 +3,45 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <div class ="container">
-      <div class="d-flex align-items-end" style="height:50px;">
-        <h4><b>注文履歴一覧</b></h4>
-    </div>
-
+    <title></title>
   </head>
   <body>
-  </body>
-
-
-
-
-
-<!--<table class = "table" >-->
-  <tr>
-    <td>注文日</td>
-    <td>配送先</td>
-    <td>注文商品</td>
-    <td>支払金額</td>
-    <td>ステータス</td>
-    <td>注文詳細</td>
-  </tr>
-
-   <%# @orders.each do |order| %>
-      <tbody>
-        <tr>
-          <td><%#= order.created_at.strftime('%Y/%m/%d') %></td>
-          <td>
-            <%#= order.postcode %><br/>
-            <%#= order.address %><br/>
-            <%#= order.address_name %>
-          </td>
-          <td>
-            <%# order.order_details.each do |order_detail| %>
-            <%#= order_detail.item.name %>
-            <%# end %>
-          </td>
-          <td><%#= "#{order.billing_amount.to_s(:delimited)}" %>円</td>
-          <td><%#= order.order_status_i18n %></td>
-          <td><%#= link_to '表示する', public_order_path(order.id) %></td>
-        </tr>
-      </tbody>
-    <%# end %>
-
-    <!--★-->
-     <style>
-      .table-container {
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .table {
-        border: 1px solid #ccc;
-        border-collapse: collapse;
-        width: 48%;
-      }
-
-      .table th, .table td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: center;
-      }
-
-      /* 追加スタイル: テーブルを縦に表示 */
-      .vertical-table {
-        display: flex;
-        flex-direction: column;
-        margin-left: 20px; /* 適切な間隔を設定 */
-      }
-      .vertical-table th, .vertical-table td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left; /* 右寄せから左寄せに変更 */
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
+    <%#= render 'public/shared/header.html.erb' %>
+    <div class="container p-3">
       <div class="row">
-        <div class="col-12">
 
-          <div class="bg-light" style="max-width: 260px; margin: 0 auto; padding: 15px;">
-            <div class="text-center">
-            </div>
-          </div>
-
-          <div class="table-container">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>商品名</th>
-                  <th>単価（税込）</th>
-                  <th>数量</th>
-                  <th>小計</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td>チョコバナナミルフィーユ</td>
-                  <td>1,100</td>
-                  <td>1</td>
-                  <td>1,100</td>
-                </tr>
-                <tr>
-                  <td>チーズタルト</td>
-                  <td>330</td>
-                  <td>2</td>
-                  <td>660</td>
-                </tr>
-              </tbody>
-            </table>
-                        <table class="vertical-table">
-              <tbody>
-                <tr>
-                  <th>送料</th>
-                  <td>800</td>
-                </tr>
-                <tr>
-                  <th>商品合計</th>
-                  <td>1,760</td>
-                </tr>
-                <tr>
-                  <th>請求金額</th>
-                  <td>2,560</td>
-                </tr>
-              </tbody>
-            </table>
-
-          </div>
-
-          <h4><b>支払方法</b></h4>
-
-          <h4><b>お届け先</b></h4>
-
+        <div class="col-md-12">
+          <h3>注文履歴一覧</h3>
+          <table class="table table-bordered">
+            <tr class="table-secondary">
+              <td>注文日</td>
+              <td>配送先</td>
+              <td>注文商品</td>
+              <td>支払い金額</td>
+              <td>ステータス</td>
+              <td>注文詳細</td>
+            </tr>
+            <%# @orders.each do |order| %>
+              <tr>
+                <td><%#= order.created_at.strftime('%Y/%m/%d') %></td>
+                <td><%#= order.address %></td>
+                <td>
+                  <ul class="list-unstyled">
+                    <%# order.order_details.each do |order_detail|  %>
+                      <li><%#= order_detail.item.name %></li>
+                    <%# end %>
+                  </ul>
+                </td>
+                <td><%#= order.total_price.to_s(:delimited) %>円</td>
+                <td><%#= order.status_i18n %></td>
+                <td><%#= link_to "表示する", order_path(order.id), class: "btn btn-info" %></td>
+              </tr>
+            <%# end %>
+          </table>
+          <%#= paginate @orders, theme: 'bootstrap-5' %>
         </div>
       </div>
     </div>
-
-
-
-<%#= f.hidden_field :title, :value => "楽しいRuby" %>
-<%#= f.select :amount, [['いち',1], ['に',2], ['さん',3]] %>
-    <!--★-->
-</table>
-</div>
+    <%#= render 'public/shared/footer.html.erb' %>
+  </body>
 </html>
