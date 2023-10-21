@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
   </head>
+
   <body>
     <%#= render 'public/shared/header.html.erb' %>
     <div class="container p-3">
@@ -21,6 +21,7 @@
               <td>ステータス</td>
               <td>注文詳細</td>
             </tr>
+
             <%# @orders.each do |order| %>
               <tr>
                 <td><%#= order.created_at.strftime('%Y/%m/%d') %></td>
@@ -38,10 +39,12 @@
               </tr>
             <%# end %>
           </table>
+
           <%#= paginate @orders, theme: 'bootstrap-5' %>
         </div>
       </div>
     </div>
+
     <%#= render 'public/shared/footer.html.erb' %>
   </body>
 </html>
