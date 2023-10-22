@@ -88,3 +88,4 @@ private
     @genres = Genre.all
     render "public/items/show"
   end
+end
