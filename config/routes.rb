@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-root to: "homes#top"
-
+# root to: "homes#top"
+root to: 'public/homes#top'
 scope module: :public do
   get "/about" => "homes#about"
   get "customers/mypage" => "customers#show"
@@ -50,8 +50,6 @@ namespace :admin do
     resource :order_details,only: [:update]
   end
 end
-
-  # root to: 'public/homes#top'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
