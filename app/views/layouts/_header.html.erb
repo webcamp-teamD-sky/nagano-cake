@@ -1,21 +1,21 @@
 <header>
   <%= link_to image_tag("Nganologo", class: "image"), '/' %>
   <% if customer_signed_in? %>
-    <%= link_to 'マイページ', '/public/customers/show' %>
-    <%= link_to '商品一覧', '/public/items/index' %>
-    <%= link_to 'カート', '/public/cart_items/index' %>
+    <%= link_to 'マイページ', '/customers/mypage' %>
+    <%= link_to '商品一覧', '/items' %>
+    <%= link_to 'カート', '/cart_items' %>
     <%= link_to 'ログアウト', '/customers/sign_out', method: :delete %>
     ようこそ、<%= current_customer.last_name %>さん！
   <% else %>
-    <%= link_to 'About', '/public/homes/about' %>
-    <%= link_to '商品一覧', '/public/items/index' %>
+    <%= link_to 'About', '/homes/about' %>
+    <%= link_to '商品一覧', '/items' %>
     <%= link_to '新規登録', '/customers/sign_up' %>
     <%= link_to 'ログイン', '/customers/sign_in' %>
   <% end %>
   <div class="search_form">
-    
+
       <%= text_field_tag :search %>
       <%= submit_tag "検索", class: "btn btn-primary" %>
-    
+
   </div>
 </header>
