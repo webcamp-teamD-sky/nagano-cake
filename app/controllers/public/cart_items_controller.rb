@@ -5,16 +5,16 @@ class Public::CartItemsController < ApplicationController
     # @cart_items = CartItem.where(customer]current_customer)
     # @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
 
-  # def update
-  #   @cart_item = CartItem.find(params[:id])
-  #   if @cart_item.update(cart_item_params)
-  #     redirect_to cart_items_path, notice: "数量を変更しました。"
-  #   else
-  #     flash.now[:notice] = "数量を変更できませんでした。"
-  #     @cart_items = CartItem.where(member:current_customer)
-  #     @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
-  #     render :index
-  #   end
+  def update
+    @cart_item = CartItem.find(params[:id])
+    if @cart_item.update(cart_item_params)
+      redirect_to cart_items_path, notice: "数量を変更しました。"
+    else
+      flash.now[:notice] = "数量を変更できませんでした。"
+      @cart_items = CartItem.where(member:current_customer)
+      # @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+      render :index
+    end
   end
 
   def destroy
@@ -71,8 +71,8 @@ class Public::CartItemsController < ApplicationController
       end
     end
   end
-  # end
-# end
+  end
+end
 
 
 private
@@ -87,5 +87,3 @@ private
     @genres = Genre.all
     render "public/items/show"
   end
-
-end
