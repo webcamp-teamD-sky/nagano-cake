@@ -1,31 +1,31 @@
 Rails.application.routes.draw do
-  scope module: :public do
 
-    root to: "homes#top"
+root to: "homes#top"
 
-    get "/about" => "homes#about"
-    get "customers/mypage" => "customers#show"
-    get "customers/information/edit" => "customers#edit"
-    patch "customers/information" => "customers#update"
-    get "customers/check" => "customers#check"
-    patch "customers/withdraw" => "customers#withdraw"
+scope module: :public do
+  get "/about" => "homes#about"
+  get "customers/mypage" => "customers#show"
+  get "customers/information/edit" => "customers#edit"
+  patch "customers/information" => "customers#update"
+  get "customers/check" => "customers#check"
+  patch "customers/withdraw" => "customers#withdraw"
 
-    resources :items, only: [:index,:show]
+  resources :items, only: [:index,:show]
 
-    resources :cart_items, only: [:index, :update, :destroy, :create] do
-      collection do
-        delete "destroy_all"
-      end
+  resources :cart_items, only: [:index, :update, :destroy, :create] do
+    collection do
+      delete "destroy_all"
     end
+  end
 
-    resources :orders, only: [:new, :create, :index, :show] do
-      collection do
-        get "check"
-        get "completion"
-      end
+  resources :orders, only: [:new, :create, :index, :show] do
+    collection do
+      get "check"
+      get "completion"
     end
+  end
 
-    resources :addresses, except: [:show]
+  resources :addresses, except: [:show]
 
   end
 # 顧客用
@@ -51,7 +51,7 @@ namespace :admin do
   end
 end
 
-  root to: 'public/homes#top'
+  # root to: 'public/homes#top'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
