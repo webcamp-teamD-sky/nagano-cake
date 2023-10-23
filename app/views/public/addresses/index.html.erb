@@ -1,57 +1,54 @@
-<style>
-/*.container {*/
-  background-color: #ccc; /* グレーの背景色 */
-  padding: 20px; /* フォーム内の余白 */
-/*}*/
-</style>
+<div class="container my-5">
+  <div class="row">
+    <div class="col">
+      <div class="bg-light col-md-4 address-main-box text-center">
+        <h3 class="mb-5 mt-3 address-title">配送先登録/一覧</h3>
+      </div>
 
-<div class="container p-3">
-  <div class="row address-box">
-
-    <div class="col-md-12 address-main-box">
-      <h3 class="mb-5 mt-3 address-title">配送先登録/一覧</h3>
-
+      <div class="col-12">
         <div class="mb-5 address-container">
           <%= form_with model: @address, url: addresses_path, class: 'address-box' do |f| %>
 
             <div class="row mt-3 address-box">
-              <div class="col-3 address-label">郵便番号（ハイフンなし）</div>
-                <div class="col-3 address-from">
-                  <%= f.text_field :post_code, class: 'form-control mb-2', placeholder: "0000000" %>
-                </div>
+              <div class="col-3 address-label">郵便番号（ハイフンなし）
+              </div>
+              <div class="col-3 address-from">
+                <%= f.text_field :post_code, class: 'form-control mb-2', placeholder: "0000000" %>
               </div>
             </div>
 
             <div class="row address-box">
-              <div class="col-3 address-label">住所</div>
-                <div class="col-6 address-from">
-                  <%= f.text_field :address, class: 'form-control mb-2',placeholder: "東京都渋谷区代々木神園町0-0" %>
-                </div>
+              <div class="col-3 address-label">住所
+              </div>
+              <div class="col-6 address-from">
+                <%= f.text_field :address, class: 'form-control mb-2', placeholder: "東京都渋谷区代々木神園町0-0" %>
               </div>
             </div>
 
             <div class="row address-box">
-              <div class="col-3 address-label">宛名</div>
-                <div class="col-3 address-from">
-                  <%= f.text_field :name, class: 'form-control mb-2', placeholder: "令和道子" %>
-                </div>
+              <div class="col-3 address-label">宛名
+              </div>
+              <div class="col-3 address-from">
+                <%= f.text_field :name, class: 'form-control mb-2', placeholder: "令和道子" %>
               </div>
             </div>
 
-            <div class="col-4 address-btn address-btn-right">
+            <div class="col-10 address-btn address-btn-right text-right">
               <%= f.submit "新規登録", class: 'btn btn-success' %>
             </div>
           <% end %>
 
-          <table class="table address-table">
-            <thead>
-              <tr>
-                <th>郵便番号</th>
-                <th>住所</th>
-                <th>宛名</th>
-                <th></th>
-              </tr>
-            </thead>
+
+        <table class="table address-table">
+          <thead>
+            <tr>
+              <th>郵便番号</th>
+              <th>住所</th>
+              <th>宛名</th>
+              <th></th>
+            </tr>
+          </thead>
+        </table>
 
           <tbody>
             <% if @addresses.empty? %>
@@ -73,7 +70,7 @@
             <% end %>
           </tbody>
 
-        </table>
+        </div>
       </div>
     </div>
   </div>
