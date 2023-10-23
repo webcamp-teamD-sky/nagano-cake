@@ -5,6 +5,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def check
+<<<<<<< HEAD
     # @order = Order.new(order_params)
     # @cart_items = current_customer.cart_items.all
     # @postage_fee = 800
@@ -40,6 +41,43 @@ class Public::OrdersController < ApplicationController
     #   @cart_items_price = ary.sum
     #   @selected_pay_method = params[:order][:payment_method]
     #   @total_price = @shipping_fee + @cart_items_price
+=======
+    @order = Order.new(order_params)
+    @cart_items = current_customer.cart_items.all
+    @postage_fee = 800
+    ary = []
+    @cart_items.each do |cart_item|
+      ary << (cart_item.item.price*1.1 *cart_item.amount).floor
+    end
+      if params[:order][:address_option] == "0"
+      @order.postcode = current_customer.postcode
+      @order.address = current_customer.address
+      @order.address_name = current_customer.first_name + current_customer.last_name
+    elsif params[:order][:address_option] == "1"
+      @address = Address.fnd(params[:order][:order_address])
+      @order.postcode = @address.postcode
+      @order.address = @address.address
+      @order.address_name = @address.name
+
+    elsif params[:order][:address_option] == "2"
+      @order.postcode = params[:order][:postcode]
+      @order.address = params[:order][:address]
+      @order.address_name = params[:order][:name]
+    else
+
+      render 'new'
+
+    end
+      @cart_items = current_customer.cart_items.all
+      @shipping_fee = 800
+      ary = []
+      @cart_items.each do |cart_item|
+      ary << (cart_item.item.price*1.1 *cart_item.amount).floor
+      end
+      @cart_items_price = ary.sum
+      @selected_pay_method = params[:order][:payment_method]
+      @total_price = @shipping_fee + @cart_items_price
+>>>>>>> origin/develop
   end
 
   def completion
