@@ -4,7 +4,7 @@
     <%= link_to 'マイページ', '/customers/mypage' %>
     <%= link_to '商品一覧', '/items' %>
     <%= link_to 'カート', '/cart_items' %>
-    <%= link_to 'ログアウト', '/customers/sign_out', method: :delete %>
+    <%= button_to 'ログアウト', '/customers/sign_out', method: :delete%>
     ようこそ、<%= current_customer.last_name %>さん！
   <% else %>
     <%= link_to 'About', '/about' %>
@@ -19,11 +19,11 @@
     <!--<%#= link_to '注文履歴一覧', '/cart_items' %>-->
     <%= link_to 'ジャンル一覧', '/admin/genres' %>
     <%= link_to 'ログアウト', '/admin/sign_out', method: :delete %>
-  <% else %>
-    <%= link_to 'About', '/about' %>
-    <%= link_to '商品一覧', '/admin/items' %>
-    <!--<%#= link_to '新規登録', '/customers/sign_up' %>-->
-    <%= link_to 'ログイン', '/admin/sign_in' %>
+  <!--<%# else %>-->
+  <!--  <%#= link_to 'About', '/about' %>-->
+  <!--  <%#= link_to '商品一覧', '/admin/items' %>-->
+  <!--  <%#= link_to '新規登録', '/customers/sign_up' %>-->
+  <!--  <%#= link_to 'ログイン', '/admin/sign_in' %>-->
   <% end %>
   <div class="search_form">
 
