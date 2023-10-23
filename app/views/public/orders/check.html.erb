@@ -1,70 +1,59 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  .table-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    width: 85%;
+  }
+  .table th, .table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  .table thead th {
+    background-color: #f2f2f2;
+  }
+  .vertical-table {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+  }
+  .vertical-table th, .vertical-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  .nowrap {
+    white-space: nowrap;
+  }
+</style>
 
-    <style>
-      .table-container {
-        display: flex;
-        justify-content: space-between;
-      }
+<div class="container">
+  <div class="row">
+    <div class="col-12">
 
-      .table {
-        border: 1px solid #ccc;
-        border-collapse: collapse;
-        width: 85%;
-      }
-
-      .table th, .table td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
-      }
-
-      .table thead th {
-        background-color: #f2f2f2;
-      }
-
-      .vertical-table {
-        display: flex;
-        flex-direction: column;
-        margin-left: 20px;
-      }
-      .vertical-table th, .vertical-table td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
-      }
-    </style>
-
-  <%#= render 'public/shared/header.html.erb' %>
-
-  </head>
-
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-
-          <div class="bg-light" style="max-width: 260px; margin: 0 auto; padding: 15px;">
-            <div class="text-center">
-              <div class="col-12">
-                <h3>注文情報確認</h3>
-              </div>
-            </div>
+      <div class="bg-light" style="max-width: 260px; margin: 0 auto; padding: 15px;">
+        <div class="text-center">
+          <div class="col-12">
+            <h3>注文情報確認</h3>
           </div>
+        </div>
+      </div>
 
-          <div class="table-container">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>商品名</th>
-                  <th>単価（税込）</th>
-                  <th>数量</th>
-                  <th>小計</th>
-                </tr>
-              </thead>
+      <div class="table-container">
+        <table class="table">
+
+          <thead>
+            <tr>
+              <th>商品名</th>
+              <th>単価（税込）</th>
+              <th>数量</th>
+              <th>小計</th>
+            </tr>
+          </thead>
 
       <%# @cart_items.each do |cart_item| %>
         <tr>
@@ -72,71 +61,65 @@
             <%#= image_tag cart_item.item.image, size: "100x100" %>
             <strong><%#= cart_item.item.name %></strong>
           </td>
-            <td>¥<%#= (cart_item.item.price * 1.1).floor.to_s(:delimited) %></td>
-            <td><%#= cart_item.amount %></td>
-            <td>¥<%#= (cart_item.item.price * 1.1).floor * cart_item.amount %></td>
+          <td>¥<%#= (cart_item.item.price * 1.1).floor.to_s(:delimited) %></td>
+          <td><%#= cart_item.amount %></td>
+          <td>¥<%#= (cart_item.item.price * 1.1).floor * cart_item.amount %></td>
         </tr>
       <%# end %>
 
-              <tbody>
-                <tr>
-                  <td>
-                    チョコバナナミルフィーユ
-                  </td>
-                  <td>
-                    1,100
-                  </td>
-                  <td>
-                    1
-                  </td>
-                  <td>
-                    1,100
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    チーズタルト
-                  </td>
-                  <td>
-                    330
-                  </td>
-                  <td>
-                    2
-                  </td>
-                  <td>
-                    660
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+      <tbody>
+        <tr>
+          <td>
+            textチョコバナナミルフィーユ
+          </td>
+          <td>
+            text1,100
+          </td>
+          <td>
+            text1
+          </td>
+          <td>
+            text1,100
+          </td>
+        </tr>
 
-            <table class="vertical-table">
-              <tbody>
-                <tr>
-                  <th>送料</th>
-                  <td>800</td>
-                </tr>
-                <tr>
-                  <th>商品合計</th>
-                  <td>1,760</td>
-                </tr>
-                <tr>
-                  <th>請求金額</th>
-                  <td>2,560</td>
-                </tr>
-              </tbody>
-            </table>
+        <tr>
+          <td>
+            textチーズタルト
+          </td>
+          <td>
+            text330
+          </td>
+          <td>
+            text2
+          </td>
+          <td>
+            text660
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-          </div>
+    <table class="vertical-table">
+      <tbody>
+        <tr>
+          <th>送料</th>
+          <td>text800</td>
+        </tr>
+        <tr class="nowrap">
+          <th>商品合計</th>
+          <td>text1,760</td>
+        </tr>
+        <tr class="nowrap">
+          <th>請求金額</th>
+          <td>text2,560</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-          <h4><b>支払方法</b></h4>
-          <br>
+  <h4><b>支払方法</b></h4>
+    <br>
 
-          <h4><b>お届け先</b></h4>
-
-        </div>
-      </div>
-    </div>
-  </body>
-  <%#= render 'public/shared/footer.html.erb' %>
-</html>
+  <h4><b>お届け先</b></h4>
+</div>
