@@ -29,7 +29,7 @@ scope module: :public do
 
   end
 
-  
+
 
 # 顧客用
 # URL /customers/sign_in ...
