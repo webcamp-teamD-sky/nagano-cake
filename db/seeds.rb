@@ -51,18 +51,6 @@ Customer.create!(
    address: "11"
 )
 
-Genre.create!(
-   p name: "test"
-)
-
-Item.create!(
-   p name: "test",
-   explanation: "test",
-   price: "1",
-   genre: Genre.find_by(name: "test"),
-   is_active: true
-)
-
 10.times do |n|
    p n
     p Customer.create!(
@@ -77,3 +65,31 @@ Item.create!(
       address: "TEST#{n + 1}"
     )
  end
+
+Genre.create!(
+   p name: "test"
+)
+
+Genre.create!(
+   p name: "ケーキtest"
+)
+
+Genre.create!(
+   p name: "プリンtest"
+)
+
+Genre.create!(
+   p name: "焼き菓子test"
+)
+
+Genre.create!(
+   p name: "キャンディtest"
+)
+
+Item.create!(
+   p name: "test",
+   explanation: "test",
+   price: "1",
+   genre: Genre.find_by(name: "test"),
+   is_active: true
+)
