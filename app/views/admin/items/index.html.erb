@@ -24,7 +24,7 @@
         <td><%= item.price.to_s(:delimited) %></td>
         <td><%= item.genre.name %></td>
         <td>
-          <% if item.is_on_sale %>
+          <% if item.is_active %>
               <p class="text-success"><strong>販売中</strong></p>
             <% elsif %>
               <p class="text-muted"><strong>販売停止中</strong></p>
