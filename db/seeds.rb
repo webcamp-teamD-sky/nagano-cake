@@ -11,7 +11,7 @@ Admin.create!(
    password: 'cakehuwa'
 )
 Admin.create!(
-   p email: '11@11',
+   p email: '22@22',
    password: '123456'
 )
 
@@ -42,8 +42,8 @@ Customer.create!(
 Customer.create!(
    p last_name: "11",
    first_name: "11",
-   last_name_kana: "11",
-   first_name_kana: "11",
+   last_name_kana: "トステ",
+   first_name_kana: "テスト",
    phone_number: "00000000000",
    postcode: "0000000",
    email: "11@11",
@@ -68,8 +68,8 @@ Item.create!(
     p Customer.create!(
       last_name: Faker::Japanese::Name.last_name,
       first_name: Faker::Japanese::Name.first_name,
-      last_name_kana: "とすて#{n + 1}",
-      first_name_kana: "てすと#{n + 1}",
+      last_name_kana: "トステ",
+      first_name_kana: "テスト",
       phone_number: "0123456789#{n + 1}",
       postcode: "1234567",
       email: "test#{n + 1}@test.com",

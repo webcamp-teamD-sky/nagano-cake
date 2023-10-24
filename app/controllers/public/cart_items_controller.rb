@@ -75,7 +75,6 @@ class Public::CartItemsController < ApplicationController
   # end
   end
 
-
 private
 
   def cart_item_params
