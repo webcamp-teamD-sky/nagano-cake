@@ -6,15 +6,10 @@ class Item < ApplicationRecord
 
   has_one_attached :image
 
-  validates :name, presence: true
-  # 字数制限
-  validates :explanation, presence: true
-  # 字数制限
-  #
-  validates :price, presence: true
-
+  validates :name, presence: true, length: { minimum: 1, maximum: 20 }
+  validates :explanation, presence: true, length: { minimum: 1, maximum: 200 }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }  # 0円以上
   validates :is_active, presence: true
-  # validates :image, presence: true
 
   def get_image
     unless image.attached?
