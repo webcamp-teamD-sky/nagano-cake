@@ -18,6 +18,7 @@ class Item < ApplicationRecord
       image.attach(io: File.open(file_path), filename: 'noimage.jpg', content_type: 'image/jpg')
     end
     iamge
+    # AIよりimageとのこと
   end
 
 end
