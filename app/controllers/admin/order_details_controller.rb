@@ -1,23 +1,27 @@
 class Admin::OrderDetailsController < ApplicationController
   
   def update
-    @order_details = OrderDetail.find(params[:id])
-    @order = @order_details.order
-
-    if @order_details.update(order_details_params)
-      if @order.order_details.any? { |order_details| order_details.production_status == "製作中" }
-        @order.update(status: 2)
-      elsif @order.order_details.all? { |order_details| order_details.production_status == "完了" }
-        @order.update(status: 3)
+    @order_detail = OrderDetail.find(params[:id])
+    
+    if @order_detail.update(order_detail_params)
+      
+      if @order_detail.making_status == "production_completed"
+      @order = @order_detail.order
+      @order.update(status: :"preparing_to_ship") if @order.order_details.all? { |detail| detail.making_status == "production_completed" }
+      elsif @order_detail.making_status == "in_production"
+      @order = @order_detail.order
+      @order.update(status: :"sent")
       end
-      redirect_to request.referer
+      
+      redirect_to admin_order_path(@order_detail.order)
     end
+    
   end
-
+  
   private
-
-  def order_details_params
-    params.require(:order_detail).permit(:production_status)
+  
+  def order_detail_params
+    params.require(:order_detail).permit(:production_method)
   end
   
 end
