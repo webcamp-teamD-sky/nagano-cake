@@ -1,31 +1,33 @@
 class Admin::GenresController < ApplicationController
-  before_action :get_genre_id, only: [:edit, :update]
   
   def index
-    @genre = Genre.new
     @genres = Genre.all
+    @genre = Genre.new
   end
-  
+
+  def edit
+    @genre = Genre.find(params[:id])
+  end
+
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
-      flash[:notice] = "ジャンルを追加しました。"
-      redirect_to admin_genres_path
+      redirect_to admin_genres_path, notice: "ジャンルを追加しました。"
     else
+      flash.now[:danger] = "エラーが発生しました"
       @genres = Genre.all
-      render :index
+      render 'index'
     end
-  end
-  
-  def edit
+
   end
 
   def update
+    @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
-      flash[:notice] = "ジャンルを更新しました"
-      redirect_to admin_genres_path
+      redirect_to admin_genres_path, notice: "ジャンルを更新しました。"
     else
-      render :edit
+      flash.now[:danger] = "エラーが発生しました"
+      render 'edit'
     end
   end
 
@@ -33,10 +35,6 @@ class Admin::GenresController < ApplicationController
 
   def genre_params
     params.require(:genre).permit(:name)
-  end
-
-  def get_genre_id
-    @genre = Genre.find(params[:id])
   end
   
 end
