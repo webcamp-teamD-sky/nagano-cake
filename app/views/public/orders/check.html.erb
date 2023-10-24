@@ -26,6 +26,9 @@
     padding: 8px;
     text-align: left;
   }
+   .vertical-table tbody th {
+    background-color: #f2f2f2;
+  }
   .nowrap {
     white-space: nowrap;
   }
@@ -42,6 +45,7 @@
           </div>
         </div>
       </div>
+      <br>
 
       <div class="table-container">
         <table class="table">
@@ -116,10 +120,25 @@
         </tr>
       </tbody>
     </table>
+
   </div>
 
   <h4><b>支払方法</b></h4>
+
     <br>
 
   <h4><b>お届け先</b></h4>
+
+    <div class="col-md-30">
+      <b><%#= current_customer.last_name + current_customer.first_name %></b>
+    </div>
+    <div class="col-md-30">
+      違う挿入の仕方してるため要修正〒<%#= current_customer.postcode %>
+    </div>
+    <div class="col-md-30">
+      <%#= current_customer.address %><!--ワイヤーフレームは郵便番号+住所+宛名だが修正。-->
+    </div>
+
+  </div>
+</div>
 </div>

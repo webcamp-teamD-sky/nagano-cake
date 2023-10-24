@@ -5,7 +5,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def check
-    # @order = Order.new(order_params)
+    @order = Order.new(order_params)
     # @cart_items = current_customer.cart_items.all
     # @postage_fee = 800
     # ary = []

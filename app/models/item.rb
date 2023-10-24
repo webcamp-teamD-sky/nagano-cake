@@ -8,7 +8,7 @@ class Item < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 1, maximum: 20 }
   validates :explanation, presence: true, length: { minimum: 1, maximum: 200 }
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }  # 0円以上
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 1 }  # 1円以上
   validates :is_active, presence: true
 
   def get_image
