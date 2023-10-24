@@ -2,8 +2,8 @@ class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!, only: [:index, :update, :destroy, :destroy_all]
 
   def index
-    # @cart_items = CartItem.where(customer]current_customer)
-    # @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+    @cart_items = CartItem.where(customer: current_customer)
+    @total = @cart_items.sum { |item| item.subtotal }
   end
 
   def update
@@ -79,7 +79,8 @@ class Public::CartItemsController < ApplicationController
 private
 
   def cart_item_params
-    params.require(:cart_item).permit(:item_id, :quantity)
+    # params.require(:cart_item).permit(:item_id, :quantity)
+    params.require(:cart_item).permit(:item_id, :amount)
   end
 
   def render_items_show
