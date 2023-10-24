@@ -63,46 +63,17 @@ Item.create!(
    is_active: true
 )
 
-#  10.times do |n|
-#     Customer.create!(
-#       last_name: "トステ#{n + 1}",
-#       first_name: "テスト#{n + 1}",
-#       last_name_kana: "とすて#{n + 1}",
-#       first_name_kana: "てすと#{n + 1}",
-#       phone_number: "01234567890",
-#       postcode: "1234567",
-#       email: "test#{n + 1}@test.com",
-#       encrypted_password: "123456",
-#       address: "TEST#{n + 1}"
-#     )
-#  end
-
-# 10.times do
-#  Customer.create!(
-#    last_name: "姓",
-#    first_name: "名",
-#    last_name_kana: "セイ",
-#    first_name_kana: "メイ",
-#    phone_number: "01234567890",
-#    postcode: "1234567",
-#    p email: "test-#{n+1}@test.com",
-#    # email: Faker::Internet.unique.email, # もしFaker gemを使用してランダムなメールアドレスを生成する場合
-#    password = "123456#{n+1}"
-#    # encrypted_password: "password123", # パスワードはハッシュ化されている必要があります
-#    address: "東京都渋谷区ああああああああああああああああああああ",
-#    )
-# end
-
-# 10.times do |n|
-#     Customer.create!(
-#       p last_name: "トステ#{n + 1}",
-#       first_name: "テスト#{n + 1}",
-#       last_name_kana: "とすて#{n + 1}",
-#       first_name_kana: "てすと#{n + 1}",
-#       phone_number: "01234567890",
-#       postcode: "1234567",
-#       email: "test#{n + 1}@test.com",
-#       password: Faker::Internet.unique.email,
-#       address: "TEST#{n + 1}"
-#     )
-#  end
+10.times do |n|
+   p n
+    p Customer.create!(
+      last_name: Faker::Japanese::Name.last_name,
+      first_name: Faker::Japanese::Name.first_name,
+      last_name_kana: "とすて#{n + 1}",
+      first_name_kana: "てすと#{n + 1}",
+      phone_number: "0123456789#{n + 1}",
+      postcode: "1234567",
+      email: "test#{n + 1}@test.com",
+      password: "123456",
+      address: "TEST#{n + 1}"
+    )
+ end
