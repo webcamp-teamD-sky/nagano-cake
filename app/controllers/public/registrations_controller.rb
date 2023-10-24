@@ -59,4 +59,20 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  # 追加
+  protected
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+
+  # def after_update_path_for(resource)
+  #   edit_customer_registration_path(resource)
+  # end
+
+
+  def edit
+    @customer = Customer
+  end
 end
