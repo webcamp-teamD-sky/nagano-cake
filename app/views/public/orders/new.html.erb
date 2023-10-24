@@ -44,7 +44,8 @@
                   〒<%= current_customer.postcode %>
                 </div>
                 <div class="col-md-30">
-                  <%= current_customer.address %><!--ワイヤーフレームは郵便番号+住所+宛名だが修正。-->
+                  <%= current_customer.address %>
+                  <!--ワイヤーフレームは郵便番号+住所+宛名だが修正。-->
                 </div>
               </div>
             </div>
@@ -68,38 +69,38 @@
               </div>
             </div>
 
-            <div class="p-3">
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="new_post_code">郵便番号(ハイフンなし)</label>
-                </div>
-                <div class="col-md-3">
-                  <%= f.text_field :new_address_post_code, id: "new_post_code", class: "form-control", placeholder: "0000000", style: "border-radius: 3px;" %>
-                </div>
+            <div class="mb-3">
+              <div class="p-3">
+                <div class="col-md-12">
+
+            <div class="row mt-3 address-box">
+              <div class="col-3 address-label">宛名
+              </div>
+              <div class="col-3 address-from">
+                <%= f.text_field :name, class: 'form-control mb-2', placeholder: "令和道子" %>
               </div>
             </div>
 
-            <div class="p-3">
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="new_address">住所</label>
-                </div>
-                <div class="col-md-9">
-                  <%= f.text_field :new_address, id: "new_address", class: "form-control", placeholder: "東京都渋谷区代々木神園町0-0", style: "border-radius: 3px;" %>
-                </div>
+            <div class="row address-box">
+              <div class="col-3 address-label">郵便番号（ハイフンなし）
+              </div>
+              <div class="col-3 address-from">
+                <%= f.text_field :post_code, class: 'form-control mb-2', placeholder: "0000000" %>
               </div>
             </div>
 
-            <div class="p-3">
-              <div class="row">
-                <div class="col-md-3">
-                  <label for="new_name">宛名</label>
-                </div>
-                <div class="col-md-3">
-                  <%= f.text_field :new_name, id: "new_name", class: "form-control", placeholder: "令和道子", style: "border-radius: 3px;" %>
+            <div class="row address-box">
+              <div class="col-3 address-label">住所
+              </div>
+              <div class="col-6 address-from">
+                <%= f.text_field :address, class: 'form-control mb-2', placeholder: "東京都渋谷区代々木神園町0-0" %>
+              </div>
+            </div>
+
                 </div>
               </div>
             </div>
+            <!--ワイヤーフレームから修正あり-->
 
             <div class="actions my-2 text-center">
               <%= f.submit "確認画面へ進む", class:"btn btn-primary mt-3" %>
