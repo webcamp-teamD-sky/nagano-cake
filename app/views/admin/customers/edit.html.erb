@@ -68,10 +68,10 @@
             <div class="form-group">
               <td class="pt-0"><%= f.label "会員ステータス", class: "col-form-label" %></td>
               <td class="row pt-0">
-                  <%= f.radio_button :is_deleted, false %>
-                  <%= f.label :is_deleted, "有効", value: false, class: "ml-2 mr-4 col-form-label" %>
-                  <%= f.radio_button :is_deleted, true %>
-                  <%= f.label :is_deleted, "退会", value: true, class: "ml-2 col-form-label" %>
+                  <%= f.radio_button :is_delete, false %>
+                  <%= f.label :is_delete, "有効", value: false, class: "ml-2 mr-4 col-form-label" %>
+                  <%= f.radio_button :is_delete, true %>
+                  <%= f.label :is_delete, "退会", value: true, class: "ml-2 col-form-label" %>
               </td>
             </div>
           </tr>
