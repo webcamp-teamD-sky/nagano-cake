@@ -12,7 +12,20 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
+    <header>
+      <%= link_to image_tag("headerlog", class: "image"), root_path %>
+      <% if customer_signed_in? %>
+          <%= render 'layouts/customer_header' %>
+        <% elsif admin_signed_in? %>
+          <%= render 'layouts/admin_header' %>
+        <% else %>
+          <%= render 'layouts/header' %>
+        <% end %>
+      <div class="search_form">
+        <%= text_field_tag :search %>
+        <%= submit_tag "検索", class: "btn btn-primary" %>
+      </div>
+    </header>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>
