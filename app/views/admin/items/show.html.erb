@@ -26,7 +26,7 @@
         <th>税込価格
         <br>(税抜価格)</br>
         </th>
-        <th><%= @item.price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse %>
+        <th><%= @item.calculate_price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse %>
             (<%= @item.price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse %>)円
         </th>
         </tr>
