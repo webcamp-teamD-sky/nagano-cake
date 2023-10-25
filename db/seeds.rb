@@ -10,9 +10,32 @@ Admin.create!(
    p email: 'huwahuwacake@cake',
    password: 'cakehuwa'
 )
+
+Admin.create!(
+   p email: '11@11',
+   password: '123456'
+)
+
 Admin.create!(
    p email: '22@22',
    password: '123456'
+)
+
+Admin.create!(
+   p email: '33@33',
+   password: '123456'
+)
+
+Customer.create!(
+   p last_name: "00",
+   first_name: "00",
+   last_name_kana: "トステ",
+   first_name_kana: "テスト",
+   phone_number: "00000000000",
+   postcode: "0000000",
+   email: "00@00",
+   password: "123456",
+   address: "00"
 )
 
 Customer.create!(
@@ -27,30 +50,6 @@ Customer.create!(
    address: "東京都渋谷区代々木神園町0-0"
 )
 
-Customer.create!(
-   p last_name: "ちーむ",
-   first_name: "D_sky",
-   last_name_kana: "チーム",
-   first_name_kana: "ディースカイ",
-   phone_number: "0000000000000",
-   postcode: "000000000",
-   email: "test@test.com",
-   password: "123456",
-   address: "東京都渋谷区代々木神園町0-0"
-)
-
-Customer.create!(
-   p last_name: "11",
-   first_name: "11",
-   last_name_kana: "トステ",
-   first_name_kana: "テスト",
-   phone_number: "00000000000",
-   postcode: "0000000",
-   email: "11@11",
-   password: "123456",
-   address: "11"
-)
-
 10.times do |n|
    p n
     p Customer.create!(
@@ -62,34 +61,30 @@ Customer.create!(
       postcode: "1234567",
       email: "test#{n + 1}@test.com",
       password: "123456",
-      address: "TEST#{n + 1}"
+      address: "TEST県TEST市TEST町#{n + 1}-#{n + 1}"
     )
  end
 
 Genre.create!(
-   p name: "test"
+   p name: "ケーキ"
 )
 
 Genre.create!(
-   p name: "ケーキtest"
+   p name: "プリン"
 )
 
 Genre.create!(
-   p name: "プリンtest"
+   p name: "焼き菓子"
 )
 
 Genre.create!(
-   p name: "焼き菓子test"
-)
-
-Genre.create!(
-   p name: "キャンディtest"
+   p name: "キャンディ"
 )
 
 Item.create!(
-   p name: "test",
-   explanation: "test",
-   price: "1",
-   genre: Genre.find_by(name: "test"),
+   p name: "マドレーヌ",
+   explanation: "しっとりとした美味しいマドレーヌです。",
+   price: "210",
+   genre: Genre.find_by(name: "焼き菓子"),
    is_active: true
 )
