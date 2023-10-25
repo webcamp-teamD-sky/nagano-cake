@@ -6,7 +6,7 @@ class Admin::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @status   = Customer.select("is_deleted").find_by(id: params[:id]) 
+    @status   = Customer.select("is_delete").find_by(id: params[:id]) 
   end
 
   def edit

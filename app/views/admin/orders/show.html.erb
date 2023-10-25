@@ -30,8 +30,8 @@
           <th>注文ステータス</th>
           <td>
             <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
-              <%= f.select :status, [["入金待ち", "payment_wait"], ["入金確認", "payment_confirm"], ["製作中", "production"], 
-                ["発送準備中", "prepare_shipping"], ["発送済み", "shipped"]], { selected: @order.status }, { class: "px-2 text-center" } %>
+              <%= f.select :order_method, [["入金待ち", "waiting_payment"], ["入金確認", "confirmation"], ["製作中", "in_production"], 
+                ["発送準備中", "preparing_to_ship"], ["発送済み", "sent"]], { selected: @order.status }, { class: "px-2 text-center" } %>
               <%= f.submit "更新", class: "btn btn-sm btn-success ml-4" %>
             <% end %>
           </td>
@@ -61,8 +61,8 @@
               <td><%= (detail.price * detail.amount).to_s(:delimited) %></td>
               <td>
                 <%= form_with model: detail, url: admin_order_detail_path(detail.id), method: :patch do |f| %>
-                  <%= f.select :making_status, [["着手不可", "not_ready"], ["製作待ち", "wait_production"], ["製作中", "production"], 
-                    ["製作完了", "completed"]], { selected: detail.making_status }, { class: "px-3 text-center" } %>
+                  <%= f.select :production_method, [["着手不可", "not_possible"], ["製作待ち", "waiting"], ["製作中", "in_production"], 
+                    ["製作完了", "production_completed"]], { selected: detail.making_status }, { class: "px-3 text-center" } %>
                   <%= f.submit "更新", class: "btn btn-sm btn-success ml-4" %>
                 <% end %>
               </td>
