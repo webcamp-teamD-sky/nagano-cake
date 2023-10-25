@@ -4,8 +4,18 @@
   <%= @item.name %>
   <%= @item.explanation %>
   ¥<%= @item.price %>(税込）
-  <%= form_with model: @item do |f| %>
-    <%= f.select :quantity, 1..10 %>
+  <%#= form_with model: @item do |f| %>
+    <%#= f.select :quantity, 1..10 %>
+  <%# end %>
+  <%#= link_to 'カートに入れる', cart_items_path, class:"btn btn-primary" %>
+
+  <% if @item.is_active == true %>
+    <%= form_with(model: @cart_item,url: cart_items_path, method: :post,local: true)do |f| %>
+      <%= f.select :quantity, 1..10 %>
+      <%= f.hidden_field :item_id, :value => @item.id %>
+      <%= f.submit "カートに入れる" %>
+    <% end %>
   <% end %>
-  <%= link_to 'カートに入れる', cart_items_path, class:"btn btn-primary" %>
+
+
 </div>
