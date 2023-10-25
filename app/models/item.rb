@@ -16,7 +16,7 @@ class Item < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/noimage.jpg')
       image.attach(io: File.open(file_path), filename: 'noimage.jpg', content_type: 'image/jpg')
     end
-    iamge
+    image
   end
 
 end
