@@ -13,7 +13,7 @@ class Public::CartItemsController < ApplicationController
     else
       flash.now[:notice] = "数量を変更できませんでした。"
       @cart_items = CartItem.where(member:current_customer)
-      # @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+      @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
       render :index
     end
   end
@@ -24,7 +24,7 @@ class Public::CartItemsController < ApplicationController
       redirect_to cart_items_path, notice: "商品を削除しました。"
     else
       flash.now[:notice] = "商品の削除に失敗しました。"
-      render :public_cart_items_index_path
+      render :cart_items_path
     end
   end
 
@@ -33,7 +33,7 @@ class Public::CartItemsController < ApplicationController
       redirect_to cart_items_path, notice: "カートを空にしました。"
     else
       flash.now[:notice] = "削除に失敗しました。"
-      render :public_cart_items_index_path
+      render :cart_items_index_path
     end
   end
 
@@ -72,7 +72,7 @@ class Public::CartItemsController < ApplicationController
   #     end
   #   end
   # end
-  # end
+    end
   end
 
 private
