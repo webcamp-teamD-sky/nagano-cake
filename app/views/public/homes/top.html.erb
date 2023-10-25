@@ -1,1 +1,31 @@
-<h1>Ngano    </h1>
+<div class="container">
+
+</div>
+<h4 >
+  ようこそ、ながのCAKEへ！<br>
+  このサイトは、ケーキ販売のECサイトになります。<br>
+  会員でない方も商品の閲覧はできますが、<br>
+  購入には会員登録が必要になります。
+</h4>
+
+<%#= render 'public/items/genre' %>
+
+<h2>新着商品</h2>
+
+<%#= image_tag @items.get_image %>
+<%= @items.name %>
+¥<%#= @items.price %>
+
+<%#= image_tag @items.get_image %>
+<%= @items.name %>
+¥<%#= @items.price %>
+
+<%#= image_tag @items.get_image %>
+<%= @items.name %>
+¥<%#= @items.price %>
+
+<%#= image_tag @items.get_image %>
+<%= @items.name %>
+¥<%#= @items.price %><br>
+
+<%= link_to '全ての商品を見る >', '/items' %><br>

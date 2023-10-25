@@ -1,11 +1,6 @@
 class Public::CustomersController < ApplicationController
   def show
-  end
-
-  def edit
-  end
-
-  def update
+    @customer = current_customer
   end
 
   def check

@@ -1,0 +1,51 @@
+<div class="container h-100">
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <h2 class="mb-4">商品詳細</h2>
+          <% if @item.image.attached? %>
+        <%= image_tag @item.image, style: "max-width: 200px; max-height: 200px;" %>
+      　　<% else %>
+        <%= image_tag 'noimage.jpg', style: "max-width: 200px; max-height: 200px;" %>
+      　<% end %>
+　　</div>
+
+    <div class="col-md-8 mx-auto">
+      <div class="mb-4"></div>
+      <table>
+        <tr>
+        <th>商品名</th>
+        <th><strong><%= @item.name %></strong></th>
+        </tr>
+
+        <tr>
+        <th>商品説明</th>
+        <th><%= simple_format(@item.explanation)%></th>
+        </tr>
+
+        <tr>
+        <th>税込価格
+        <br>(税抜価格)</br>
+        </th>
+        <th><%= @item.price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse %>
+            (<%= @item.price.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\1,').reverse %>)円
+        </th>
+        </tr>
+
+        <tr>
+          <th>販売ステータス</th>
+        <%  if @item.is_active == true %>
+          <th class="text-success">販売中</th>
+        <% else %>
+          <th class="text-danger">販売停止中</th>
+        <% end %>
+        </tr>
+
+        <tr>
+        <th>　　</th>
+        <th><%= link_to "編集する", edit_admin_item_path, class:"btn btn-success" %></th>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+</div>
