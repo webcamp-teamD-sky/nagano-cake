@@ -83,9 +83,11 @@ end
   end
 
   def show
-    @order = Order.find(params[:id])
-    @order_details = @order.order_details.all
-    @address = @order.postcode + @order.address + @order.address_name
+    @order = Order
+    # .find(params[:id])
+    @orders = @order.all
+    # _detail
+    # @address = @order.name + @order.postcode + @order.address
   end
 
   private
