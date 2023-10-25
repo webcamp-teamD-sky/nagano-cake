@@ -1,5 +1,5 @@
-<h2>商品一覧(全 <%= @items.count %> 件)</h2>
-<%= @items.each do |item| %>
+<h2>商品一覧(全 <%= @item.count %> 件)</h2>
+<%= @item.each do |item| %>
   <div>
     <%= link_to item_path(item) do %>
       <%= image_tag item.get_image %>
@@ -8,5 +8,5 @@
     ¥<%= item.price %>
   </div>
 <% end %>
-<%= paginate @items %>
+<%= paginate @item %>
 <%#= render 'public/items/genre' %>

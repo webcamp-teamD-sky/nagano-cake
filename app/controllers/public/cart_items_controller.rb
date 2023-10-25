@@ -2,8 +2,8 @@ class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!, only: [:index, :update, :destroy, :destroy_all]
 
   def index
-    # @cart_items = CartItem.where(customer]current_customer)
-    # @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+    @cart_items = CartItem.where(customer:current_customer)
+    @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
   end
 
   def update
@@ -13,7 +13,7 @@ class Public::CartItemsController < ApplicationController
     else
       flash.now[:notice] = "数量を変更できませんでした。"
       @cart_items = CartItem.where(member:current_customer)
-      # @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+      @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
       render :index
     end
   end
@@ -24,7 +24,7 @@ class Public::CartItemsController < ApplicationController
       redirect_to cart_items_path, notice: "商品を削除しました。"
     else
       flash.now[:notice] = "商品の削除に失敗しました。"
-      render :public_cart_items_index_path
+      render :cart_items_path
     end
   end
 
@@ -33,46 +33,44 @@ class Public::CartItemsController < ApplicationController
       redirect_to cart_items_path, notice: "カートを空にしました。"
     else
       flash.now[:notice] = "削除に失敗しました。"
-      render :public_cart_items_index_path
+      render :cart_items_path
     end
   end
 
   def create
-  #   unless customer_signed_in?
-  #     session[:previous_url] = request.referer
-  #     redirect_to new_customer_session_path, alert: 'ログインまたは新規登録してください。'
-  #   else
-  #     @cart_item = CartItem.new(cart_item_params)
-  #     @cart_item.customer_id = current_customer.id
-  #     @existing_cart_item = current_customer.cart_items.find_by(item_id: @cart_item.item.id)
+    unless customer_signed_in?
+      session[:previous_url] = request.referer
+      redirect_to new_customer_session_path, alert: 'ログインまたは新規登録してください。'
+    else
+      @cart_item = CartItem.new(cart_item_params)
+      @cart_item.customer_id = current_customer.id
+      @existing_cart_item = current_customer.cart_items.find_by(item_id: @cart_item.item.id)
 
-  #     if @existing_cart_item.present?
-  #       total_quantity = @existing_cart_item.quantity + @cart_item.quantity
+      if @existing_cart_item.present?
+        total_quantity = @existing_cart_item.quantity + @cart_item.quantity
 
-  #       if total_quantity <= 10
-  #         @existing_cart_item.quantity = total_quantity
+        if total_quantity <= 10
+          @existing_cart_item.quantity = total_quantity
 
-  #         if @existing_cart_item.save
-  #           redirect_to public_cart_items_create_path, notice: "商品を追加しました。"
-  #         else
-  #           flash.now[:notice] = "商品の追加に失敗しました"
-  #           render :items_show
-  #         end
-  #       else
-  #         flash.now[:notice] = "カート内の同一商品が10個を超えています。カート内をご確認ください。"
-  #         render_items_show
-  #       end
-  #     else
-  #       if @cart_item.save
-  #         redirect_to public_cart_items_create_path, notice: "商品を追加しました。"
-  #       else
-  #         flash.now[:notice] = "商品の追加に失敗しました"
-  #         render_items_show
-  #       end
-  #     end
-  #   end
-  # end
-  # end
+          if @existing_cart_item.save
+            redirect_to cart_items_path, notice: "商品を追加しました。"
+          else
+            flash.now[:notice] = "商品の追加に失敗しました"
+            render :items_show
+          end
+        else
+          flash.now[:notice] = "カート内の同一商品が10個を超えています。カート内をご確認ください。"
+          render_items_show
+        end
+      else
+        if @cart_item.save
+          redirect_to cart_items_path, notice: "商品を追加しました。"
+        else
+          flash.now[:notice] = "商品の追加に失敗しました"
+          render_items_show
+        end
+      end
+    end
   end
 
 private
