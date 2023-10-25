@@ -88,3 +88,27 @@ Item.create!(
    genre: Genre.find_by(name: "焼き菓子"),
    is_active: true
 )
+
+Item.create!(
+   p name: "かぼちゃプリン",
+   explanation: "あまくてほっこりするプリンです。",
+   price: "580",
+   genre: Genre.find_by(name: "プリン"),
+   is_active: true
+)
+
+Item.create!(
+   p name: "チョコレートケーキ",
+   explanation: "クーベルチョコレートを使用しました。ベルギーから取り寄せています。テンパリングに気を付けて、チョコレートの質が落ちないように徹底しています。濃厚な味をぜひご賞味ください。",
+   price: "640",
+   genre: Genre.find_by(name: "ケーキ"),
+   is_active: true
+)
+
+Item.create!(
+   p name: "千歳飴",
+   explanation: "七五三の時期にピッタリ！子供が大好きな千歳飴です。",
+   price: "105",
+   genre: Genre.find_by(name: "キャンディ"),
+   is_active: true
+)
