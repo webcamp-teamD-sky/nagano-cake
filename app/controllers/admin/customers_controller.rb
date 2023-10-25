@@ -20,7 +20,7 @@ class Admin::CustomersController < ApplicationController
       redirect_to admin_customer_path(@customer), notice: "会員情報を更新しました。"
     else
       flash.now[:danger] = "エラーが発生しました"
-      @status   = Customer.select("is_deleted").find_by(id: params[:id]) 
+      @status   = Customer.select("is_delete").find_by(id: params[:id]) 
       render 'show'
     end
   end
