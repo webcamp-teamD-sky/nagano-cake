@@ -15,7 +15,7 @@
         <%= form_with model: @order, url: check_orders_path, method: :get do |f| %>
 
           <div class="mb-3">
-            <h5>支払方法</h5>
+            <h5><b>支払方法</b></h5>
             <div class="p-3">
               <div class="col-md-3">
                 <label>
@@ -32,7 +32,7 @@
           </div>
 
           <div class="mb-3">
-            <h5>お届け先</h5>
+            <h5><b>お届け先</b></h5>
             <div class="p-3">
               <div class="col-md-3">
                 <%= f.radio_button :address_type, "customer_address", checked: true %>
@@ -55,7 +55,7 @@
               <div class="col-md-3">
                 <%= f.radio_button :address_type, "registered_address" %>
                 <%= f.label :address_type, "登録済住所から選択" %><br>
-                <%= f.select :address_id, options_from_collection_for_select(@addresses, :id, :address_display) %>
+                <%#= f.select :address_id, options_from_collection_for_select(@addresses, :id, :address_display) %>
               </div>
             </div>
           </div>
