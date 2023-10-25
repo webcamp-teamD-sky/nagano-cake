@@ -1,3 +1,5 @@
+<%= render 'public/searches/genre' %>
+
 <h2>商品一覧(全 <%= @item.count %> 件)</h2>
 <%= @item.each do |item| %>
   <div>
@@ -9,4 +11,3 @@
   </div>
 <% end %>
 <%= paginate @item %>
-<%#= render 'public/items/genre' %>
