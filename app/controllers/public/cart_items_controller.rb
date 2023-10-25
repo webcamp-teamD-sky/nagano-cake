@@ -38,8 +38,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-  #   unless customer_signed_in?
-  #     session[:previous_url] = request.referer
+    unless customer_signed_in?
+      session[:previous_url] = request.referer
   #     redirect_to new_customer_session_path, alert: 'ログインまたは新規登録してください。'
   #   else
   #     @cart_item = CartItem.new(cart_item_params)
