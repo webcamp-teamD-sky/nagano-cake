@@ -47,10 +47,10 @@ class Public::CartItemsController < ApplicationController
       @existing_cart_item = current_customer.cart_items.find_by(item_id: @cart_item.item.id)
 
       if @existing_cart_item.present?
-        total_quantity = @existing_cart_item.quantity + @cart_item.quantity
+        total_amount = @existing_cart_item.amount + @cart_item.amount
 
-        if total_quantity <= 10
-          @existing_cart_item.quantity = total_quantity
+        if total_amount <= 10
+          @existing_cart_item.amount = total_amount
 
           if @existing_cart_item.save
             redirect_to cart_items_path, notice: "商品を追加しました。"
@@ -76,7 +76,7 @@ class Public::CartItemsController < ApplicationController
 private
 
   def cart_item_params
-    params.require(:cart_item).permit(:item_id, :quantity)
+    params.require(:cart_item).permit(:item_id, :amount)
   end
 
   def render_items_show
