@@ -1,11 +1,11 @@
 class Public::OrdersController < ApplicationController
   def new
     @order = Order.new
-    @addresses = current_customer.addresses.all
+    @addresses = current_customer.addresses
   end
 
   def check
-    # @order = Order.new(order_params)
+    @order = Order.new(order_params)
     # @cart_items = current_customer.cart_items.all
     # @postage_fee = 800
     # ary = []
