@@ -13,5 +13,9 @@ class Item < ApplicationRecord
     end
     image
   end
+  
+  def calculate_price
+    (self.price * 1.1).round
+  end
     
 end
