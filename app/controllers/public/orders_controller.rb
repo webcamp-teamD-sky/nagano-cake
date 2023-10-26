@@ -51,7 +51,6 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-# byebug
     cart_items = current_customer.cart_items.all
     @order = current_customer.orders.new(order_params)
     @order.order_status = 0
@@ -64,7 +63,7 @@ class Public::OrdersController < ApplicationController
           @ordered_item.price = (cart_item.item.price*1.1).floor
           @ordered_item.save
         end
-          redirect_to completion_orders_path          # 確認
+          redirect_to completion_orders_path
             cart_items.destroy_all
         else
           render 'new'
