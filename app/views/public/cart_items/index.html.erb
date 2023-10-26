@@ -1,4 +1,4 @@
-<div class="container p-3">
+<div class="container my-5">
   <div class="row">
     <div class="col">
 
@@ -23,7 +23,12 @@
 
         <% @cart_items.each do |cart_item| %>
           <tr>
-            <td><%= image_tag cart_item.item.image, size:"100x100", class: "object-fit-cover mr-3" %>
+            <td>
+              <% if cart_item.item.image.attached? %>
+                <%= image_tag cart_item.item.image, size: "100x100", class: "object-fit-cover mr-3" %>
+              <% else %>
+                <%= image_tag 'noimage.jpg', size: "100x100", class: "object-fit-cover mr-3" %>
+              <% end %>
               <%= cart_item.item.name %>
             </td>
             <td>

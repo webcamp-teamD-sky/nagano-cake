@@ -31,12 +31,15 @@ class Public::OrdersController < ApplicationController
 
     @cart_items = current_customer.cart_items.all
     @postage_fee = 800
-
-    ary = []
+    @cart_items_price = 0 # 商品合計の初期値を0に設定
+    # ary = []
     @cart_items.each do |cart_item|
-      ary << (cart_item.item.price*1.1 *cart_item.amount).floor
+      # ary << (cart_item.item.price*1.1 *cart_item.amount).floor
+    item_subtotal = (cart_item.item.price * 1.1 * cart_item.amount).floor
+    @cart_items_price += item_subtotal # 各アイテムの小計を合算
     end
-    @cart_items_price = ary.sum
+
+    # @cart_items_price = ary.sum
     @selected_pay_method = params[:order][:payment_method]
     @total_price = @postage_fee + @cart_items_price
 
