@@ -85,11 +85,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order
-    # .find(params[:id])
-    @orders = @order.all
-    # _detail
-    # @address = @order.name + @order.postcode + @order.address
+    @order = Order.find(params[:id])
+    @orders = @order.all_detail
+    @address = @order.name + @order.postcode + @order.address
   end
 
   private
