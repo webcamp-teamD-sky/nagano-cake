@@ -59,86 +59,19 @@
             </tr>
           </thead>
 
-<<<<<<< HEAD
-          <%# @cart_items.each do |cart_item| %>
-            <tr>
-              <td>
-                <%#= image_tag cart_item.item.image, size: "100x100" %>
-                <strong><%#= cart_item.item.name %></strong>
-              </td>
-              <td>¥<%#= (cart_item.item.price * 1.1).floor.to_s(:delimited) %></td>
-              <td><%#= cart_item.amount %></td>
-              <td>¥<%#= (cart_item.item.price * 1.1).floor * cart_item.amount %></td>
-            </tr>
-          <%# end %>
-
-          <tbody>
-            <tr>
-              <td>
-                textチョコバナナミルフィーユ
-              </td>
-              <td>
-                text1,100
-              </td>
-              <td>
-                text1
-              </td>
-              <td>
-                text1,100
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                textチーズタルト
-              </td>
-              <td>
-                text330
-              </td>
-              <td>
-                text2
-              </td>
-              <td>
-                text660
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <table class="vertical-table">
-          <tbody>
-            <tr>
-              <th>送料</th>
-              <td>text800</td>
-            </tr>
-            <tr class="nowrap">
-              <th>商品合計</th>
-              <td>text1,760</td>
-            </tr>
-            <tr class="nowrap">
-              <th>請求金額</th>
-              <td>text2,560</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <h4><b>支払方法</b></h4>
-      <br>
-
-      <h4><b>お届け先</b></h4>
-    </div>
-  </div>
-=======
           <% @cart_items.each do |cart_item| %>
             <tr>
               <td>
-                <%= image_tag cart_item.item.image, size: "100x100" %>
+                <% if cart_item.item.image.attached? %>
+                  <%= image_tag cart_item.item.image, size: "100x100" %>
+                <% else %>
+                  <%= image_tag 'noimage.jpg', size: "100x100", class: "object-fit-cover mr-3" %>
+                <% end %>
                 <strong><%= cart_item.item.name %></strong>
               </td>
               <td>¥<%= (cart_item.item.price * 1.1).floor.to_s(:delimited) %></td>
               <td><%= cart_item.amount %></td>
-              <td>¥<%= (cart_item.item.price * 1.1 * cart_item.amount).floor.to_s(:delimited) %></td>
+              <td>¥<%= (cart_item.subtotal * 1.1).floor.to_s(:delimited) %></td> <!-- カートアイテムの小計を表示 -->
             </tr>
           <% end %>
 
@@ -153,7 +86,7 @@
           </tr>
           <tr class="nowrap">
             <th>商品合計</th>
-            <td><%= @cart_items_price %></td>
+            <td><%= @cart_items_price.to_s(:delimited) %></td>
           </tr>
           <tr class="nowrap">
             <th>請求金額</th>
@@ -211,5 +144,4 @@
 
   </div>
 </div>
->>>>>>> origin/develop
 </div>

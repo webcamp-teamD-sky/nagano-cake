@@ -2,11 +2,7 @@ class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!, only: [:index, :update, :destroy, :destroy_all]
 
   def index
-<<<<<<< HEAD
-    @cart_items = CartItem.where(customer: current_customer)
-=======
     @cart_items = CartItem.where(customer:current_customer)
->>>>>>> origin/develop
     @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
   end
 
@@ -51,15 +47,6 @@ class Public::CartItemsController < ApplicationController
       @existing_cart_item = current_customer.cart_items.find_by(item_id: @cart_item.item.id)
 
       if @existing_cart_item.present?
-<<<<<<< HEAD
-        total_quantity = @existing_cart_item.quantity + @cart_item.quantity
-
-        if total_quantity <= 10
-          @existing_cart_item.quantity = total_quantity
-
-          if @existing_cart_item.save
-            redirect_to public_cart_items_create_path, notice: "商品を追加しました。"
-=======
         total_amount = @existing_cart_item.amount + @cart_item.amount
 
         if total_amount <= 10
@@ -67,29 +54,18 @@ class Public::CartItemsController < ApplicationController
 
           if @existing_cart_item.save
             redirect_to cart_items_path, notice: "商品を追加しました。"
->>>>>>> origin/develop
           else
             flash.now[:notice] = "商品の追加に失敗しました"
             render :items_show
           end
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/develop
         else
           flash.now[:notice] = "カート内の同一商品が10個を超えています。カート内をご確認ください。"
           render_items_show
         end
-<<<<<<< HEAD
-
-      else
-        if @cart_item.save
-          redirect_to public_cart_items_create_path, notice: "商品を追加しました。"
-=======
       else
         if @cart_item.save
           redirect_to cart_items_path, notice: "商品を追加しました。"
->>>>>>> origin/develop
         else
           flash.now[:notice] = "商品の追加に失敗しました"
           render_items_show
@@ -101,10 +77,7 @@ class Public::CartItemsController < ApplicationController
 private
 
   def cart_item_params
-<<<<<<< HEAD
-    params.require(:cart_item).permit(:item_id, :quantity)
-=======
->>>>>>> origin/develop
+
     params.require(:cart_item).permit(:item_id, :amount)
   end
 

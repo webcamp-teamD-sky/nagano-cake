@@ -2,13 +2,8 @@
   <div class="row">
     <div class="col">
 
-<<<<<<< HEAD
-    <%# if @cart_items.any? %>
-      <div class="bg-light col-md-4 shopping-cart-box text-center">
-=======
       <% if @cart_items.any? %>
       <div class="bg-light col-md-4 address-main-box text-center">
->>>>>>> origin/develop
         <h4 class="mt-3">ショッピングカート</h4>
       </div>
 
@@ -28,33 +23,22 @@
 
         <% @cart_items.each do |cart_item| %>
           <tr>
-<<<<<<< HEAD
-            <td><%#= image_tag cart_item.item.image, size:"100x100", class: "object-fit-cover mr-3" %>
-              <%#= cart_item.item.name %>
-=======
-            <td><%= image_tag cart_item.item.image, size:"100x100", class: "object-fit-cover mr-3" %>
+            <td>
+              <% if cart_item.item.image.attached? %>
+                <%= image_tag cart_item.item.image, size: "100x100", class: "object-fit-cover mr-3" %>
+              <% else %>
+                <%= image_tag 'noimage.jpg', size: "100x100", class: "object-fit-cover mr-3" %>
+              <% end %>
               <%= cart_item.item.name %>
->>>>>>> origin/develop
             </td>
             <td>
               <%= cart_item.item.price.to_s(:delimited) %>
             </td>
             <td>
-<<<<<<< HEAD
-              <%#= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
-                <%#= f.select :amount, (1..10), prompt: "Select Quantity" %>
-                <%#= f.submit "Change" %>
-              <%# end %>
-              <%#= form_with model: cart_item do |f| %>
-                <%#= f.select :quantity, 1..10 %>
-                <%#= f.submit "変更", class:"btn btn-success" %>
-              <%# end %>
-=======
               <%= form_with model: cart_item do |f| %>
                 <%= f.select :amount, 1..10 %>
                 <%= f.submit "変更", class:"btn btn-success" %>
               <% end %>
->>>>>>> origin/develop
             </td>
             <td><%= cart_item.subtotal.to_s(:delimited) %></td>
             <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
@@ -84,22 +68,12 @@
       <div class="row justify-content-center mt-5">
         <%= link_to "情報入力に進む", new_order_path, class:"btn btn-success", "data-turbolinks": false %>
       </div>
-<<<<<<< HEAD
-      <%# else %>
-        <div class="text-center mt-5">
-          <h4>elseの場合　ショッピングカート</h4>
-          <p>カート内に商品がありません。</p>
-        </div>
-      <%# end %>
-    <%# end %>
-=======
         <% else %>
           <div class="text-center mt-5">
             <h4>ショッピングカート</h4>
             <p>カート内に商品がありません。</p>
           </div>
         <% end %>
->>>>>>> origin/develop
     </div>
   </div>
 </div>
