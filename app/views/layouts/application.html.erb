@@ -1,4 +1,3 @@
-<!--test-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,13 +5,31 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
+    <header>
+      <%= link_to image_tag("headerlog", class: "image"), root_path %>
+      <% if customer_signed_in? %>
+          <%= render 'layouts/customer_header' %>
+        <% elsif admin_signed_in? %>
+          <%= render 'layouts/admin_header' %>
+        <% else %>
+          <%= render 'layouts/header' %>
+        <% end %>
+        
+      <div class="search_form">
+        <div class="col-8">
+          <div class="row justify-content-end my-2">
+            <%= text_field_tag :search %>
+            <%= submit_tag "🔎", class: "btn btn-light" %>
+          </div>
+        </div>
+      </div>
+      
+    </header>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>

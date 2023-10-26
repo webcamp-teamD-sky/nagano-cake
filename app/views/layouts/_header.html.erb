@@ -1,34 +1,8 @@
-<header>
-  <%= link_to image_tag("Nganologo", class: "image"), '/' %>
-  <% if customer_signed_in? %>
-    <%= link_to 'マイページ', '/customers/mypage' %>
-    <%= link_to '商品一覧', '/items' %>
-    <%= link_to 'カート', '/cart_items' %>
-    <%= button_to 'ログアウト', '/customers/sign_out', method: :delete%>
-    ようこそ、<%= current_customer.last_name %>さん！
-  <% else %>
-    <%= link_to 'About', '/about' %>
-    <%= link_to '商品一覧', '/items' %>
-    <%= link_to '新規登録', '/customers/sign_up' %>
-    <%= link_to 'ログイン', '/customers/sign_in' %>
-  <% end %>
-
-  <% if admin_signed_in? %>
-    <%= link_to '商品一覧', '/admin/items' %>
-    <%= link_to '会員一覧', '/admin/customers' %>
-    <!--<%#= link_to '注文履歴一覧', '/cart_items' %>-->
-    <%= link_to 'ジャンル一覧', '/admin/genres' %>
-    <%= button_to 'ログアウト', '/admin/sign_out', method: :delete %>
-  <!--<%# else %>-->
-  <!--  <%#= link_to 'About', '/about' %>-->
-  <!--  <%#= link_to '商品一覧', '/admin/items' %>-->
-  <!--  <%#= link_to '新規登録', '/customers/sign_up' %>-->
-  <!--  <%#= link_to 'ログイン', '/admin/sign_in' %>-->
-  <% end %>
-  <div class="search_form">
-
-      <%= text_field_tag :search %>
-      <%= submit_tag "検索", class: "btn btn-primary" %>
-
+<div class="col-8">
+  <div class="row justify-content-end my-2">
+    <div class="mr-3 menu"><%= link_to 'About', '/about', class: "btn btn-warning" %></div>
+    <div class="mr-3 menu"><%= link_to '商品一覧', '/items', class: "btn btn-warning" %></div>
+    <div class="mr-3 menu"><%= link_to '新規登録', '/customers/sign_up', class: "btn btn-warning" %></div>
+    <div class="mr-3 menu"><%= link_to 'ログイン', '/customers/sign_in', class: "btn btn-info" %></div>
   </div>
-</header>
+</div>

@@ -11,11 +11,27 @@ class Customer < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :addresses, dependent: :destroy
 
-  # def full_name
-  #   self.last_name + " " + self.first_name
-  # end
-  
-  # def full_name_kana
-  #   self.last_name_kana + " " + self.first_name_kana
-  # end
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name_kana, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/ }  # 正規表現、全角カタカナであること
+  validates :first_name_kana, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/ }  # 正規表現、全角カタカナであること
+  validates :phone_number, presence: true
+  validates :postcode, presence: true
+  validates :email, presence: true
+  validates :password, presence: true, on: create
+  validates :address, presence: true
+
+  def full_name
+    self.last_name + " " + self.first_name
+  end
+
+  def full_name_kana
+    self.last_name_kana + " " + self.first_name_kana
+  end
+
+  def active_for_authentication?
+    super && (is_delete == false)
+  end
+
+
 end

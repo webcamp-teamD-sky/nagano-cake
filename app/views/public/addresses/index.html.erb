@@ -1,3 +1,27 @@
+<style>
+  .address-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .address-table th, .address-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .address-table thead {
+    background-color: #f2f2f2;
+  }
+
+  .address-table tbody td {
+    vertical-align: top;
+  }
+
+  .address-btn {
+    margin: 2px;
+  }
+</style>
 <div class="container my-5">
   <div class="row">
     <div class="col">
@@ -8,7 +32,7 @@
 
       <div class="col-12">
         <div class="mb-5 address-container">
-          <%= form_with model: @address, url: addresses_path, class: 'address-box' do |f| %>
+          <%= form_with model: @address, url:addresses_path, class: 'address-box' do |f| %>
 
             <div class="row mt-3 address-box">
               <div class="col-3 address-label">宛名
@@ -22,7 +46,7 @@
               <div class="col-3 address-label">郵便番号（ハイフンなし）
               </div>
               <div class="col-3 address-from">
-                <%= f.text_field :post_code, class: 'form-control mb-2', placeholder: "0000000" %>
+                <%= f.text_field :postcode, class: 'form-control mb-2', placeholder: "0000000" %>
               </div>
             </div>
 
@@ -35,8 +59,11 @@
             </div>
             <!--ワイヤーフレームでは郵便番号+住所+宛名だがわかりにくいため修正。-->
 
+<<<<<<< HEAD
 
             <br>
+=======
+>>>>>>> origin/develop
             <div class="col-10 address-btn address-btn-right text-right">
               <%= f.submit "新規登録", class: 'btn btn-success' %>
             </div>
@@ -49,10 +76,13 @@
               <th>宛名</th>
               <th>郵便番号</th>
               <th>住所</th>
+<<<<<<< HEAD
               <th></th>
+=======
+              <th>編集 / 削除</th>
+>>>>>>> origin/develop
             </tr>
           </thead>
-        </table>
 
           <tbody>
             <% if @addresses.empty? %>
@@ -62,9 +92,9 @@
               <% else %>
               <% @addresses.each do |address| %>
                 <tr>
-                  <td><%= address.post_code %></td>
+                  <td><%= address.name %></td>
+                  <td><%= address.postcode %></td>
                   <td><%= address.address %></td>
-                  <td class="text-nowrap"><%= address.name %></td>
                   <td>
                     <%= link_to "編集する", edit_address_path(address.id), "data-turbolinks": false, class: "btn btn-success mr-1 address-btn" %>
                     <%= link_to "削除する", address_path(address), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger mr-1 address-btn" %>
@@ -73,6 +103,7 @@
               <% end %>
             <% end %>
           </tbody>
+        </table>
 
         </div>
       </div>

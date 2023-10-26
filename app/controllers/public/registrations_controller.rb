@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -60,6 +60,19 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+  # def after_sign_up_path_for(_resource)
+  #   customers_mypage_path
+  # end
+
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postcode, :address,:phone_number, :password, :password_confirmation])  # 追加するパラメーターを記述
+  end
+
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postcode, :address,:phone_number])  # 追加するパラメーターを記述
+  end
+
+
   # 追加
   protected
 
@@ -67,12 +80,18 @@ class Public::RegistrationsController < Devise::RegistrationsController
     resource.update_without_password(params)
   end
 
-  # def after_update_path_for(resource)
-  #   edit_customer_registration_path(resource)
-  # end
-
+  def after_update_path_for(resource)
+    customers_mypage_path(resource)
+  end
 
   def edit
-    @customer = Customer
+    @customer = current_customer
   end
+
+  def configure_account_update_params
+    customer = current_customer
+  end
+
+  
+
 end
