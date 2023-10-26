@@ -6,7 +6,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-9 offset-md-1">
+      <div class="col-md-9 m-5">
         <h4>
           ようこそ、ながのCAKEへ！<br>
           このサイトは、ケーキ販売のECサイトになります。<br>
@@ -16,9 +16,7 @@
       </div>
     </div>
   </div>
-</div>
-
-<div class="container">
+  
   <h2>新着商品</h2>
   <div class="row">
     <% @item.each do |item| %>
@@ -35,5 +33,10 @@
     </div>
     <% end %>
   </div>
+  <div class="row justify-content-end my-2">
+    <div class="col-12 m-3">
+      <%= link_to '全ての商品を見る >', '/items' %>
+    </div>
+  </div>
 </div>
-<%= link_to '全ての商品を見る >', '/items' %><br>
+
