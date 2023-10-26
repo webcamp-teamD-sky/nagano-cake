@@ -9,6 +9,9 @@ scope module: :public do
   patch "customers/information" => "customers#update"
   get "customers/check" => "customers#check"
   patch "customers/withdraw" => "customers#withdraw"
+  get '/genre/search' => 'searches#genre_search'
+  
+  
 
   resources :items, only: [:index,:show]
 
