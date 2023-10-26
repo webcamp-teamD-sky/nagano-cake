@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12">
       <h2 class="mb-4">注文履歴一覧</h2>
-      
+
       <table class="table table-hover">
         <thead class="thead-light">
           <tr>
@@ -12,28 +12,85 @@
             <th>注文ステータス</th>
           </tr>
         </thead>
-        
+
         <tbody>
-        <% @orders.each do |order| %>
+          <tr>
+            <th>2023/10/26 23:23:55</th>
+            <th>1111</th>
+            <th>8</th>
+            <th>発送準備中</th>
+          </tr>
+          <tr>
+            <th>2023/10/26 22:35:25</th>
+            <th>令和道子</th>
+            <th>9</th>
+            <th>入金待ち</th>
+          </tr>
+          <tr>
+            <th>2023/10/26 21:35:25</th>
+            <th>1111</th>
+            <th>3</th>
+            <th>入金待ち</th>
+          </tr>
+          <tr>
+            <th>2023/10/26 20:00:15</th>
+            <th>1111</th>
+            <th>8</th>
+            <th>発送準備中</th>
+          </tr>
+          <tr>
+            <th>2023/10/26 18:48:07</th>
+            <th>令和道子</th>
+            <th>9</th>
+            <th>発送済み</th>
+          </tr>
+          <tr>
+            <th>2023/10/26 09:34:25</th>
+            <th>1111</th>
+            <th>3</th>
+            <th>入金確認</th>
+          </tr>
+          <tr>
+            <th>2023/10/26 09:30:25</th>
+            <th>1111</th>
+            <th>8</th>
+            <th>入金待ち</th>
+          </tr>
+          <tr>
+            <th>2023/10/26 08:30:25</th>
+            <th>令和道子</th>
+            <th>9</th>
+            <th>入金待ち</th>
+          </tr>
+          <tr>
+            <th>2023/10/26 07:35:25</th>
+            <th>1111</th>
+            <th>3</th>
+            <th>発送済み</th>
+          </tr>
+
+<!--テキストにて失礼します-->
+
+        <%# @orders.each do |order| %>
           <tr>
             <td>
-              <%= link_to admin_order_path(order) do %>
-                <u><%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></u>
-              <% end %>
+              <%#= link_to admin_order_path(order) do %>
+                <u><%#= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></u>
+              <%# end %>
             </td>
-            <td><%= order.customer.last_name + order.customer.first_name %></td>
-            <td><%= order.order_details.count.to_s(:delimited) %></td>
-            <td><%= order.status_i18n %></td>
+            <td><%#= order.customer.last_name + order.customer.first_name %></td>
+            <td><%#= order.order_details.count.to_s(:delimited) %></td>
+            <td><%#= order.status_i18n %></td>
           </tr>
-        <% end %>
+        <%# end %>
         </tbody>
-        
+
       </table>
-      
+
       <div class="d-flex justify-content-center">
         <%= paginate @orders %>
       </div>
-      
+
     </div>
   </div>
 </div>

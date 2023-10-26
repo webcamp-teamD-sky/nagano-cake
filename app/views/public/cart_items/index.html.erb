@@ -36,9 +36,9 @@
           <tr>
             <td>
               <% if cart_item.item.image.attached? %>
-                <%= image_tag cart_item.item.image, style: "max-width: 200px; max-height: 200px;" , class: "object-fit-cover mr-3" %>
+                <%= image_tag cart_item.item.image, style: "max-width: 80px; max-height: 80px;" , class: "object-fit-cover mr-3" %>
               <% else %>
-                <%= image_tag 'noimage.jpg', style: "max-width: 200px; max-height: 200px;" , class: "object-fit-cover mr-3" %>
+                <%= image_tag 'noimage.jpg', style: "max-width: 80px; max-height: 80px;" , class: "object-fit-cover mr-3" %>
               <% end %>
               <%= cart_item.item.name %>
             </td>
