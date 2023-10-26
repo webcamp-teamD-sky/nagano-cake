@@ -100,12 +100,14 @@
 
     <br>
     <h4><b>支払方法</b></h4>
-    <% if @selected_pay_method == "credit_card" %>
-      クレジットカード
-    <% else %>
-      銀行振込
-    <% end %>
-    <br>
+      <div class="col-md-12">
+        <% if @selected_pay_method == "credit_card" %>
+          クレジットカード
+        <% else %>
+          銀行振込
+        <% end %>
+        <br>
+      </div>
 
     <br>
     <h4><b>お届け先</b></h4>
