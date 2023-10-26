@@ -1,46 +1,51 @@
-<%= render 'public/searches/genre' %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3" >
+      <%= render 'public/searches/genre' %>
+    </div>
 
-<div class="container h-100">
-<div class="row">
-  <div class="col-md-4 mx-auto">
-    <% if @item.image.attached? %>
-      <%= image_tag @item.image, style: "max-width: 200px; max-height: 200px;" %>
-    <% else %>
-      <%= image_tag 'noimage.jpg', style: "max-width: 200px; max-height: 200px;" %>
-    <% end %>
-　　</div>
-
-　　<div class="col-md-8 mx-auto">
-    <div class="mb-4"></div>
-    <table>
-      <tr>
-        <th></th>
-        <th><strong><%= @item.name %></strong></th>
-      </tr>
-
-      <tr>
-        <th></th>
-        <th><%= simple_format(@item.explanation)%></th>
-      </tr>
-
-      <tr>
-        <th></th>
-        <th><strong>¥<%= @item.price %>(税込)</strong></th>
-      </tr>
-      <tr>
-        <th></th>
-        <th>
-          <% if @item.is_active == true %>
-            <%= form_with(model: @cart_item,url: cart_items_path, method: :post,local: true)do |f| %>
-              <%= f.select :quantity, 1..10, include_blank: "個数選択" %>
-              <%= f.hidden_field :item_id, :value => @item.id %>
-              <%= f.submit "カートに入れる", class:"btn btn-success" %>
-            <% end %>
+    <div class="col-md-8 offset-md-1">
+      <div class="row">
+        <div class="col-md-4 mx-auto">
+          <% if @item.image.attached? %>
+            <%= image_tag @item.image, style: "max-width: 200px; max-height: 200px;" %>
+          <% else %>
+            <%= image_tag 'noimage.jpg', style: "max-width: 200px; max-height: 200px;" %>
           <% end %>
-        </th>
-      </tr>
-    </table>
-  </div>
+      　　</div>
+      
+      　　<div class="col-md-8 mx-auto">
+          <div class="mb-4"></div>
+          <table>
+            <tr>
+              <th></th>
+              <th><strong><%= @item.name %></strong></th>
+            </tr>
+      
+            <tr>
+              <th></th>
+              <th><%= simple_format(@item.explanation)%></th>
+            </tr>
+      
+            <tr>
+              <th></th>
+              <th><strong>¥<%= @item.price %>(税込)</strong></th>
+            </tr>
+            <tr>
+              <th></th>
+              <th>
+                <% if @item.is_active == true %>
+                  <%= form_with(model: @cart_item,url: cart_items_path, method: :post,local: true)do |f| %>
+                    <%= f.select :quantity, 1..10, include_blank: "個数選択" %>
+                    <%= f.hidden_field :item_id, :value => @item.id %>
+                    <%= f.submit "カートに入れる", class:"btn btn-success" %>
+                  <% end %>
+                <% end %>
+              </th>
+            </tr>
+          </table>
+        </div>
+    </div>
   </div>
 </div>
 
