@@ -5,23 +5,19 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
-    # @address = Address.find(params[:id])
+    @address = Address.find(params[:id])
   end
 
   def create
     address = Address.new(address_params)
     address.customer_id = current_customer.id
-
     if address.save
-      flash[:notice] = "住所を新規登録しました。"
+      flash[:notice] = "配送先を追加しました。"
       redirect_to addresses_path
     else
-      @addresses = Address.where(customer_id: current_customer.id)
-      @address = Address.new
       flash.now[:notice] = "住所の新規登録に失敗しました。"
       render :index
     end
-
   end
 
   def update
@@ -55,7 +51,7 @@ class Public::AddressesController < ApplicationController
 
   private
   def address_params
-    params.require(:address).permit(:post_code, :address, :name)
+    params.require(:address).permit(:postcode, :address, :name)
   end
 
 end
