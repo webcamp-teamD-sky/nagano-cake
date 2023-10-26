@@ -16,12 +16,13 @@
           </h4>
 
           <h2>新着商品</h2>
-
           <% @item.each do |item| %>
-            <% if item.image.attached? %>
-              <%= image_tag item.image, style: "max-width: 200px; max-height: 200px;" %>
-            <% else %>
-              <%= image_tag 'noimage.jpg', style: "max-width: 200px; max-height: 200px;" %>
+            <%= link_to item_path(item) do %>
+              <% if item.image.attached? %>
+                <%= image_tag item.image, style: "max-width: 200px; max-height: 200px;" %>
+              <% else %>
+                <%= image_tag 'noimage.jpg', style: "max-width: 200px; max-height: 200px;" %>
+              <% end %>
             <% end %>
             <%= item.name %>
             ¥<%= item.price %><br>
