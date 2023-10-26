@@ -7,50 +7,51 @@ class Public::OrdersController < ApplicationController
   def check
     @addresses = current_customer.addresses
     @order = Order.new(order_params)
-      if params[:order][:address_option] == "0"
+
+    if params[:order][:address_type] == "customer_address"
       @order.postcode = current_customer.postcode
       @order.address = current_customer.address
       @order.name = current_customer.first_name + current_customer.last_name
-      elsif params[:order][:address_option] == "1"
-      @address = Address.fnd(params[:order][:order_address])
+    elsif params[:order][:address_option] == "1"
+      # あとで
+      @address = Address.find(params[:order][:order_address])
       @order.postcode = @address.postcode
       @order.address = @address.address
       @order.name = @address.name
-
-      elsif params[:order][:address_option] == "2"
+    elsif params[:order][:address_option] == "2"
+      # あとで
       @order.postcode = params[:order][:postcode]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
-
-      redirect_to public_orders_complete_path
       cart_items.destroy_all
-
-      else
-      # render 'new'
-      end
+      redirect_to public_orders_complete_path
+    else
+      render 'new'
+    end
 
     @cart_items = current_customer.cart_items.all
     @postage_fee = 800
 
     ary = []
     @cart_items.each do |cart_item|
-    ary << (cart_item.item.price*1.1 *cart_item.amount).floor
-    end
-
-    @cart_items = current_customer.cart_items.all
-    ary = []
-    @cart_items.each do |cart_item|
-    ary << (cart_item.item.price*1.1 *cart_item.amount).floor
+      ary << (cart_item.item.price*1.1 *cart_item.amount).floor
     end
     @cart_items_price = ary.sum
     @selected_pay_method = params[:order][:payment_method]
     @total_price = @postage_fee + @cart_items_price
+
+    @order.customer_id = current_customer.id
+    @order.total_payment = @total_price
+    @order.status = 0
+    @order.postage = @postage_fee
+
   end
 
   def completion
   end
 
   def create
+# byebug
     cart_items = current_customer.cart_items.all
     @order = current_customer.orders.new(order_params)
     @order.order_status = 0
@@ -63,7 +64,7 @@ class Public::OrdersController < ApplicationController
           @ordered_item.price = (cart_item.item.price*1.1).floor
           @ordered_item.save
         end
-          redirect_to public_orders_complete_path
+          redirect_to completion_orders_path          # 確認
             cart_items.destroy_all
         else
           render 'new'
@@ -80,7 +81,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer.orders.latest
+    @orders = current_customer.orders
     @cart_items = current_customer.cart_items.all
   end
 
@@ -93,7 +94,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :address, :postcode, :payment_method, :amount, :postage_fee)
+    params.require(:order).permit(:name, :address, :postcode, :payment_method, :amount)
   end
 
 
