@@ -1,31 +1,39 @@
 <div class="container">
+<%= stylesheet_link_tag "application" %>
+  <div class="row">
+    <div class="col-md-3" >
+      <%= render 'public/searches/genre' %>
+    </div>
+    
+    <div class="col-md-8 offset-md-1">
+      <div class="row">
+        <div class="col-md-4 mx-auto">
+          <h4 >
+            ようこそ、ながのCAKEへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。
+          </h4>
 
-</div>
-<h4 >
-  ようこそ、ながのCAKEへ！<br>
-  このサイトは、ケーキ販売のECサイトになります。<br>
-  会員でない方も商品の閲覧はできますが、<br>
-  購入には会員登録が必要になります。
-</h4>
-
-<%#= render 'public/items/genre' %>
-
-<h2>新着商品</h2>
-
-<%#= image_tag @items.get_image %>
-<%= @items.name %>
-¥<%#= @items.price %>
-
-<%#= image_tag @items.get_image %>
-<%= @items.name %>
-¥<%#= @items.price %>
-
-<%#= image_tag @items.get_image %>
-<%= @items.name %>
-¥<%#= @items.price %>
-
-<%#= image_tag @items.get_image %>
-<%= @items.name %>
-¥<%#= @items.price %><br>
-
-<%= link_to '全ての商品を見る >', '/items' %><br>
+          <h2>新着商品</h2>
+          
+          <%#= image_tag @items.get_image %>
+          <%= @item.name %>
+          ¥<%#= @items.price %>
+          
+          <%#= image_tag @items.get_image %>
+          <%= @item.name %>
+          ¥<%#= @items.price %>
+          
+          <%#= image_tag @items.get_image %>
+          <%= @item.name %>
+          ¥<%#= @items.price %>
+          
+          <%#= image_tag @items.get_image %>
+          <%= @item.name %>
+          ¥<%#= @items.price %><br>
+          
+          <%= link_to '全ての商品を見る >', '/items' %><br>
+        </div>
+      </div>
+    </div>

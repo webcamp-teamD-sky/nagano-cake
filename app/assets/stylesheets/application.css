@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+.top {
+  background-image: url("/assets/top.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}

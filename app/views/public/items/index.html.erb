@@ -1,12 +1,29 @@
-<h2>商品一覧(全 <%= @item.count %> 件)</h2>
-<%= @item.each do |item| %>
-  <div>
-    <%= link_to item_path(item) do %>
-      <%= image_tag item.get_image %>
-    <% end %>
-    <%= item.name %>
-    ¥<%= item.price %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3" >
+      <%= render 'public/searches/genre' %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <div class="row">
+        <div class="col-md-4 mx-auto">
+          <h2>商品一覧(全 <%= @item.count %> 件)</h2>
+          <%= @item.each do |item| %>
+            <div>
+              <%= link_to item_path(item) do %>
+                <% if item.image.attached? %>
+                  <%= image_tag item.image, style: "max-width: 200px; max-height: 200px;" %>
+                <% else %>
+                  <%= image_tag 'noimage.jpg', style: "max-width: 200px; max-height: 200px;" %>
+                <% end %>
+              <% end %><br>
+              <stlong><%= item.name %></stlong><br>
+              <stlong>¥<%= item.price %></stlong>
+            </div>
+          <% end %>
+          <%= paginate @item %>
+        </div>
+      </div>
   </div>
-<% end %>
-<%= paginate @item %>
-<%#= render 'public/items/genre' %>
+</div>
+

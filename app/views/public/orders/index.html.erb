@@ -4,10 +4,16 @@
     <div class="col-md-12">
       <h3>注文履歴一覧</h3>
 
+<<<<<<< HEAD
         <table class="table table-bordered">
               <div class="col-md-12">
           <% if @orders.present? %>
 
+=======
+        <% if @orders.present? %>
+
+          <table class="table table-bordered">
+>>>>>>> origin/develop
 
             <tr class="table-secondary">
               <td>注文日</td>
@@ -20,16 +26,23 @@
 
 
             <% @orders.each do |order| %>
+<<<<<<< HEAD
 
               <tbody>
 
+=======
+              <tbody>
+>>>>>>> origin/develop
                 <tr>
                   <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
                   <td><%= order.name %></td>
                   <td><%= order.postcode %></td>
                   <td><%= order.address %></td>
                 </tr>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/develop
                 <tr>
                   <% order.order_details.each do |order_detail| %>
                     <%= order_detail.item.name %>
@@ -38,9 +51,13 @@
                   <td><%= order_status_i18n %></td>
                   <td><%= link_to "表示する", order_path(order.id), class: "btn btn-info" %></td>
                 </tr>
+<<<<<<< HEAD
 
               </tbody>
 
+=======
+              </tbody>
+>>>>>>> origin/develop
             <% end %>
 
         <% else %>

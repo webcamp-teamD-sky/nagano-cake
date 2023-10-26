@@ -1,4 +1,8 @@
-<%= link_to 'About', '/about' %>
-<%= link_to '商品一覧', '/items' %>
-<%= link_to '新規登録', '/customers/sign_up' %>
-<%= link_to 'ログイン', '/customers/sign_in' %>
+<div class="col-8">
+  <div class="row justify-content-end my-2">
+    <div class="mr-3 menu"><%= link_to 'About', '/about', class: "btn btn-warning" %></div>
+    <div class="mr-3 menu"><%= link_to '商品一覧', '/items', class: "btn btn-warning" %></div>
+    <div class="mr-3 menu"><%= link_to '新規登録', '/customers/sign_up', class: "btn btn-warning" %></div>
+    <div class="mr-3 menu"><%= link_to 'ログイン', '/customers/sign_in', class: "btn btn-info" %></div>
+  </div>
+</div>
