@@ -1,39 +1,58 @@
-<div class="container">
+<style>
+  /* CSS */
+  .haikei {
+    width: auto;
+    height: auto;
+    background-image: url('<%= asset_path('haikei_4.png') %>');
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+  }
+</style>
+
 <%= stylesheet_link_tag "application" %>
+
+<div class="container">
   <div class="row">
     <div class="col-md-3" >
       <%= render 'public/searches/genre' %>
     </div>
 
     <div class="row">
-      <div class="col-md-9 offset-md-1">
-        <h4>
-          ようこそ、ながのCAKEへ！<br>
-          このサイトは、ケーキ販売のECサイトになります。<br>
-          会員でない方も商品の閲覧はできますが、<br>
-          購入には会員登録が必要になります。
-        </h4>
+      <div class="col-md-12 offset-md-1">
+        <div class="haikei">
+          <h4>
+            <br><br><br><br><br><br>
+            ようこそ、ながのCAKEへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。<br><br><br><br><br><br><br><br>
+          </h4>
+        </div>
       </div>
+    </div>
+
+    <div class="container">
+      <h2>新着商品</h2>
+      <div class="row">
+      <% @item.each do |item| %>
+      <div class="col-md-3">
+        <%= link_to item_path(item) do %>
+          <% if item.image.attached? %>
+            <%= image_tag item.image, style: "max-width: 200px; max-height: 200px;" %>
+          <% else %>
+            <%= image_tag 'noimage.jpg', style: "max-width: 200px; max-height: 200px;" %>
+          <% end %>
+        <% end %><br>
+
+        <%= item.name %><br>
+        ¥<%= item.price %><br>
+      </div>
+
+      <% end %>
+
     </div>
   </div>
 </div>
 
-<div class="container">
-  <h2>新着商品</h2>
-  <div class="row">
-    <% @item.each do |item| %>
-    <div class="col-md-3">
-      <%= link_to item_path(item) do %>
-        <% if item.image.attached? %>
-          <%= image_tag item.image, style: "max-width: 200px; max-height: 200px;" %>
-        <% else %>
-          <%= image_tag 'noimage.jpg', style: "max-width: 200px; max-height: 200px;" %>
-        <% end %>
-      <% end %><br>
-      <%= item.name %><br>
-      ¥<%= item.price %><br>
-    </div>
-    <% end %>
-  </div>
-</div>
-<%= link_to '全ての商品を見る >', '/items' %><br>
+  <%= link_to '全ての商品を見る >', '/items' %><br>
