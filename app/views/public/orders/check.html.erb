@@ -62,7 +62,12 @@
           <% @cart_items.each do |cart_item| %>
             <tr>
               <td>
-                <%= image_tag cart_item.item.image, size: "100x100" %>
+                <% if cart_item.item.image.attached? %>
+                  <%= image_tag cart_item.item.image, size: "100x100" %>
+                <% else %>
+                  <%= image_tag 'noimage.jpg', size: "100x100", class: "object-fit-cover mr-3" %>
+                <% end %>
+                <%= cart_item.item.name %>
                 <strong><%= cart_item.item.name %></strong>
               </td>
               <td>¥<%= (cart_item.item.price * 1.1).floor.to_s(:delimited) %></td>
