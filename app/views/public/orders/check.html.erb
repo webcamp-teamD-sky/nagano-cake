@@ -63,10 +63,11 @@
             <tr>
               <td>
                 <% if cart_item.item.image.attached? %>
-                  <%= image_tag cart_item.item.image, size: "100x100" %>
+                  <%= image_tag cart_item.item.image, style: "max-width: 80px; max-height: 80px;" %>
                 <% else %>
-                  <%= image_tag 'noimage.jpg', size: "100x100", class: "object-fit-cover mr-3" %>
+                  <%= image_tag 'noimage.jpg', style: "max-width: 80px; max-height: 80px;" , class: "object-fit-cover mr-3" %>
                 <% end %>
+
                 <strong><%= cart_item.item.name %></strong>
               </td>
               <td>¥<%= (cart_item.item.price * 1.1).floor.to_s(:delimited) %></td>
@@ -99,12 +100,14 @@
 
     <br>
     <h4><b>支払方法</b></h4>
-    <% if @selected_pay_method == "credit_card" %>
-      クレジットカード
-    <% else %>
-      銀行振込
-    <% end %>
-    <br>
+      <div class="col-md-12">
+        <% if @selected_pay_method == "credit_card" %>
+          クレジットカード
+        <% else %>
+          銀行振込
+        <% end %>
+        <br>
+      </div>
 
     <br>
     <h4><b>お届け先</b></h4>
@@ -145,3 +148,4 @@
   </div>
 </div>
 </div>
+<br>

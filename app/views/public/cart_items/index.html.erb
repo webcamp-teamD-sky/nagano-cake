@@ -11,11 +11,22 @@
         <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class:"btn btn-danger" %>
       </div>
       <table class="table table-bordered">
+        <div class="text-right mb-3">
+        <small>
+          ※数量変更後、
+        </small>
+        <button type="button" class="btn btn-success" id="update-cart-item" disabled>
+          変更
+        </button>
+        <small>
+          ボタンを押してください
+        </small>
+        </div>
         <thead>
           <tr>
             <th>商品名</th>
             <th>単価（税込）</th>
-            <th><small>※変更後ボタンを押してください</small><br>数量
+            <th>数量</th>
             <th>小計</th>
             <th></th>
           </tr>
@@ -25,9 +36,9 @@
           <tr>
             <td>
               <% if cart_item.item.image.attached? %>
-                <%= image_tag cart_item.item.image, size: "100x100", class: "object-fit-cover mr-3" %>
+                <%= image_tag cart_item.item.image, style: "max-width: 80px; max-height: 80px;" , class: "object-fit-cover mr-3" %>
               <% else %>
-                <%= image_tag 'noimage.jpg', size: "100x100", class: "object-fit-cover mr-3" %>
+                <%= image_tag 'noimage.jpg', style: "max-width: 80px; max-height: 80px;" , class: "object-fit-cover mr-3" %>
               <% end %>
               <%= cart_item.item.name %>
             </td>
@@ -77,3 +88,4 @@
     </div>
   </div>
 </div>
+<br>
