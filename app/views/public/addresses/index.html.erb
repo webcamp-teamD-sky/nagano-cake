@@ -25,7 +25,8 @@
 <div class="container my-5">
   <div class="row">
     <div class="col">
-      <div class="bg-light col-md-4 address-main-box text-center">
+            <div class="bg-light col-md-4 address-main-box text-center">
+      <!--<div class="bg-light col-md-4 address-main-box text-center">-->
         <h3 class="mb-5 mt-3 address-title">配送先登録/一覧</h3>
       </div>
 
@@ -56,6 +57,8 @@
                 <%= f.text_field :address, class: 'form-control mb-2', placeholder: "東京都渋谷区代々木神園町0-0" %>
               </div>
             </div>
+            <!--ワイヤーフレームでは郵便番号+住所+宛名だがわかりにくいため修正。-->
+
 
             <div class="col-10 address-btn address-btn-right text-right">
               <%= f.submit "新規登録", class: 'btn btn-success' %>
@@ -99,3 +102,4 @@
     </div>
   </div>
 </div>
+<br>

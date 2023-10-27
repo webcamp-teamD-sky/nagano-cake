@@ -58,6 +58,7 @@ class Public::CartItemsController < ApplicationController
             flash.now[:notice] = "商品の追加に失敗しました"
             render :items_show
           end
+
         else
           flash.now[:notice] = "カート内の同一商品が10個を超えています。カート内をご確認ください。"
           render_items_show
@@ -76,6 +77,7 @@ class Public::CartItemsController < ApplicationController
 private
 
   def cart_item_params
+
     params.require(:cart_item).permit(:item_id, :amount)
   end
 

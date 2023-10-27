@@ -8,7 +8,11 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <style>
+    body{
+    background-color:#FDFAF2;
+        }
+  </style>
   <body>
     <header>
       <%= link_to image_tag("headerlog", class: "image"), root_path %>
@@ -19,7 +23,7 @@
         <% else %>
           <%= render 'layouts/header' %>
         <% end %>
-        
+
       <div class="search_form">
         <div class="col-8">
           <div class="row justify-content-end my-2">
@@ -28,7 +32,7 @@
           </div>
         </div>
       </div>
-      
+
     </header>
     <%= yield %>
     <%= render 'layouts/footer' %>
