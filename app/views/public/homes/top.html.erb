@@ -20,7 +20,12 @@
     </div>
 
     <div class="row">
-      <div class="col-md-12 offset-md-1">
+
+      
+  
+  
+<!--       <div class="col-md-12 offset-md-1"> -->
+      <div class="col-md-9 m-5">
         <div class="haikei">
           <h3>
             <br><br><br><br><br><br>
@@ -34,7 +39,7 @@
       </div>
     </div>
 
-    <div class="container">
+<!--     <div class="container"> -->
       <h2>新着商品</h2>
       <div class="row">
       <% @item.each do |item| %>
@@ -49,13 +54,12 @@
 
         <%= item.name %><br>
         ¥<%= item.price %><br>
-      </div>
-
-      <% end %>
-
+      
     </div>
-    <div class="row justify-content-end">
-      <%= link_to '全ての商品を見る >', '/items' %><br>
+  </div>
+  <div class="row justify-content-end my-2">
+    <div class="col-12 m-3">
+      <%= link_to '全ての商品を見る >', '/items' %>
     </div>
   </div>
 </div>

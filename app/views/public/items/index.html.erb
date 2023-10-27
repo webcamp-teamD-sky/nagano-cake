@@ -1,34 +1,29 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3" >
+    <div class="col-3" >
       <%= render 'public/searches/genre' %>
     </div>
-    <div class="col-md-8 offset-md-1">
+    <div class="col-9">
+      <h2>商品一覧(全 <%= @items.count %> 件)</h2>
       <div class="row">
-        <h2>商品一覧(全 <%= @items.count %> 件)</h2>
-      </div>
-      <div class="container">
-        <div class="row">
-          <% @items.each do |item| %>
-            <div class="col-md-3">
-              <%= link_to item_path(item) do %>
-                <% if item.image.attached? %>
-                  <%= image_tag item.image, style: "max-width: 200px; max-height: 200px;" %>
-                <% else %>
-                  <%= image_tag 'noimage.jpg', style: "max-width: 200px; max-height: 200px;" %>
-                <% end %>
-              <% end %><br>
-              <stlong><%= item.name %></stlong><br>
-              <stlong>¥<%= item.price %></stlong>
-            </div>
-          <% end %>
-          <%= paginate @items %>
-        </div>
+        <% @items.each do |item| %>
+          <div class="col-3 ms-1">
+            <%= link_to item_path(item) do %>
+              <% if item.image.attached? %>
+                <%= image_tag item.image, style: "max-width: 200px; max-height: 200px;" %>
+              <% else %>
+                <%= image_tag 'noimage.jpg', style: "max-width: 200px; max-height: 200px;" %>
+              <% end %>
+            <% end %><br>
+            <stlong><%= item.name %></stlong><br>
+            <stlong>¥<%= item.price %></stlong>
+          </div>
+        <% end %>
+        <%= paginate @items %>
       </div>
     </div>
   </div>
 </div>
-
 
 
 
